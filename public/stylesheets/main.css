@@ -1,0 +1,340 @@
+/* reset align */
+body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textare a,button,select{margin:0;padding:0}
+body,input,textarea,select,button,table{font-family:'�뗭�',Dotum,AppleGothic,sans-serif;font-size:1em}
+img,fieldset{border:0}
+ul,ol{list-style:none}
+em,address{font-style:normal} a{text-decoration:none} a:hover,a:active,a:focus{text-decoration:underline}
+
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css); 
+
+body {
+	background-color: #dbd8d8;
+}
+
+nav {
+	position : fixed;
+	top: 0;
+	width: 100%;
+	background-color: #46485b;
+	height: 40px;
+	box-shadow: 0px 2px 7px #4e5762;
+	z-index: 3;
+	text-align: center;
+	font-family: 'Lato', 'Nanum Gothic' , sans-serif;
+	font-size: 27px;
+	font-weight: 100;
+	line-height: 40px;
+	vertical-align: center;
+	color : #eeeeee;
+}
+
+#userInfoPopUp {
+	position : fixed;
+	display: none;
+	z-index: 2;
+	width : 400px;
+	height: 260px;
+	left : 50%;
+	margin : 40px 0px 0px -201px; 
+	/* 	매우 재미있는 방법! fixed에서 자주 사용할 것 같다. (처음부터 이렇게 짜도 됨~) */
+	background-color : #eeeeee;
+	box-shadow: 4px 4px 7px #5e646c;
+}
+
+#userInfoPopUp #userInfoTitle {
+	float : left;
+	width : 160px;
+	height : 30px;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size : 29px;
+	letter-spacing: 3px;
+	text-align: center;
+	margin : 11px 0px 0px 120px;
+	color : #4c5561;
+}
+
+#userInfoPopUp #userInfoClose {
+	width : 26px;
+	height : 26px;
+	float : right;
+	margin : 12px 12px 0px 0px;
+	cursor : pointer;
+}
+
+#userInfoPopUp #infoSection {
+	width : 320px;
+	height : 140px;
+	background-color: #ffffff;
+	margin: 74px auto 0px auto;
+	box-shadow: 1px 2px 7px #87919d;
+}
+
+#userInfoPopUp #userName {
+	clear: both;
+	position : relative;
+	width : 320px;
+	height : 84px;
+	text-align: center;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size : 22px;
+	line-height: 84px;
+	vertical-align: center;
+	letter-spacing: 3px;
+	color : #4c5561;
+	margin : 00px 0px 0px 0px;
+}
+
+#userInfoPopUp #record {
+	width : 320px;
+	height : 30px;
+	text-align: center;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size : 18px;
+	letter-spacing: 2px;
+	color : #4c5561;
+	margin : 0px 0px 0px 0px;
+}
+
+#settingPopUp {
+	position : fixed;
+	display: none;
+	z-index: 2;
+	width : 260px;
+	height: 160px;
+	left : 50%;
+	margin : 40px 0px 0px -131px; 
+	/* 	매우 재미있는 방법! fixed에서 자주 사용할 것 같다. (처음부터 이렇게 짜도 됨~) */
+	background-color : #eeeeee;
+	box-shadow: 4px 4px 7px #5e646c;
+}
+
+#settingPopUp #settingClose {
+	width : 26px;
+	height : 26px;
+	float : right;
+	margin : 12px 12px 0px 0px;
+	cursor : pointer;
+}
+
+#settingPopUp #logoutButton {
+	display : fixed;
+	width : 100px;
+	height : 42px;
+	float : right;
+	border-radius: 4px;
+	line-height: 42px;
+	text-align: center;
+	vertical-align: center;
+	margin: 58px 42px 0px auto;
+	background-color: #64666d;
+	color: #e5ecf3;
+	cursor : pointer;
+	font-size: 17px;
+	font-family : 'Nanum Gothic' , sans-serif;
+}
+
+#contentsView {
+	width : 700px;
+	min-height: 400px;
+	margin : 70px auto 0px auto;
+	-webkit-filter: blur(0px);
+    -moz-filter: blur(0px);
+    -o-filter: blur(0px);
+    -ms-filter: blur(0px);
+    filter: blur(0px);
+    opacity: 1;
+}
+
+#contentsView aside {
+	position : fixed;
+	float : left;
+	width : 50px;
+	height : 300px;
+	margin : 34px auto 0px 34px;
+}
+
+#contentsView aside #writeIcon {
+	width: 47px;
+	height: 47px;
+	margin : 0px 0px 5px 1px;
+	cursor : pointer;
+}
+
+#contentsView aside #userIcon {
+	width: 46px;
+	height: 41px;
+	margin : 1px 0px 4px 1px;
+	cursor : pointer;
+}
+
+#contentsView aside #settingIcon {
+	width: 47px;
+	height: 47px;
+	margin : 4px 0px 0px 1px;
+	cursor : pointer;
+}
+
+#contentsView aside #toWatingListButton {
+	display : fixed;
+	width : 40px;
+	height : 22px;
+	float : right;
+	border-radius: 4px;
+	line-height: 22px;
+	text-align: center;
+	vertical-align: center;
+	margin: 10px 5px 0px 1px;
+	background-color: #4d4d4d;
+	color: #e5ecf3;
+	cursor : pointer;
+	font-size: 13px;
+	font-family : 'Nanum Gothic' , sans-serif;
+}
+
+#contentsView aside #toCompleteListButton {
+	display : fixed;
+	width : 40px;
+	height : 22px;
+	float : right;
+	border-radius: 4px;
+	line-height: 22px;
+	text-align: center;
+	vertical-align: center;
+	margin: 6px 5px 0px 1px;
+	background-color: #4d4d4d;
+	color: #e5ecf3;
+	cursor : pointer;
+	font-size: 13px;
+	font-family : 'Nanum Gothic' , sans-serif;
+}
+
+#contentsView #waitingList {
+	width : 540px;
+	height: auto;
+	float : right;
+	margin : 0px 70px 0px 0px;
+}
+
+#contentsView #completeList {
+	width : 540px;
+	height: auto;
+	float : right;
+	margin : 0px 70px 0px 0px;
+}
+
+#contentsView .listTitle {
+	width : 540px;
+	height : 40px;
+	margin : 0px auto 16px auto;
+}
+
+#contentsView .listTitle .title {
+	width : 560px;
+	height : 30px;
+	margin : 0px 0px 0px 24px;
+	font-family: 'Nanum Gothic' , sans-serif;
+	font-size : 20px;
+	color : #424563;
+}
+
+#contentsView .listTitle .line {
+	width : 494px;
+	height : 3px;
+	border-bottom: 2px dotted #aa2c41;
+	margin : 0px auto 0px auto;
+}
+
+#contentsView .bookCard {
+	width : 500px;
+	min-height: 170px;
+	margin : 0px auto 34px auto;
+	background-color : #eeeeee;
+	border-radius: 10px;
+	box-shadow: 1px 2px 7px #87919d;
+}
+
+#contentsView .bookCard .topLineUpper {
+	width : 500px;
+	height: 20px;
+	background-color : #424563;
+	border-radius : 10px;
+}
+
+#contentsView .bookCard .topLineBottom {
+	width : 500px;
+	height: 20px;
+	background-color : #424563;
+	margin : -8px auto 0px auto;
+}
+
+#contentsView .bookCard .bookCardTitle {
+	width : 500px;
+	height: 20px;
+	margin : -26px 0px 0px 20px;
+	z-index: 2;
+	font-family: 'Lato' , 'Nanum Gothic' , sans-serif;
+	font-weight: 100;
+	font-size : 16px;
+	color : #eeeeee;
+}
+
+#contentsView #waitingList .bookCard .findingMessage {
+	width : 400px;
+	height : 34px;
+	line-height: 26px;
+	font-family: 'Nanum Gothic' , sans-serif;
+	font-size : 18px;
+	margin : 20px 0px 0px 20px;
+	color : #50588a;
+}
+
+#contentsView #waitingList .bookCard .bookTitle {
+	width : 450px;
+	min-height : 40px;	
+	word-wrap : break-word;
+	line-height : 30px;
+	font-family : 'Nanum Gothic' , sans-serif;
+	font-size : 24px;
+	margin : 4px 0px 0px 20px;
+	color : #50588a;
+}
+
+#contentsView #waitingList .bookCard .bookNumber {
+	display : inline-block;
+	width : 200px;
+	height : 46px;
+	line-height : 32px;
+	margin : 10px 0px 0px 22px;
+	font-family : 'Nanum Gothic' , sans-serif;
+	font-size : 15px; 
+	color : #50588a;
+}
+
+#contentsView #waitingList .bookCard .returnCompleteButton {
+	display : inline-block;
+	width : 60px;
+	height : 28px;
+	float : right;
+	border-radius: 3px;
+	line-height: 29px;
+	text-align: center;
+	vertical-align: center;
+	margin: 12px 30px 0px auto;
+	background-color: #424563;
+	color: #e5ecf3;
+	cursor : pointer;
+	font-size: 13px;
+	font-family : 'Nanum Gothic' , sans-serif;
+}
+
+footer {
+	width : 100%;
+	height: 30px;
+	text-align: center;
+	margin: -10px auto 0px auto;
+	font-family: 'Lato', 'Nanum Gothic' , sans-serif;
+	font-weight: 300;
+	font-size: 16px;
+	color: #59626d;
+	display: inline-block;
+}

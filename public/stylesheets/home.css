@@ -1,0 +1,93 @@
+/* reset align */
+body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textare a,button,select{margin:0;padding:0}
+body,input,textarea,select,button,table{font-family:'�뗭�',Dotum,AppleGothic,sans-serif;font-size:1em}
+img,fieldset{border:0}
+ul,ol{list-style:none}
+em,address{font-style:normal} a{text-decoration:none} a:hover,a:active,a:focus{text-decoration:underline}
+
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css); 
+
+body {
+	background-color: #dbd8d8;
+}
+
+nav {
+	position : fixed;
+	top: 0;
+	width: 100%;
+	background-color: #46485b;
+	height: 40px;
+	box-shadow: 0px 1px 7px #4e5762;
+	z-index: 3;
+	text-align: center;
+	font-family: 'Lato', 'Nanum Gothic' , sans-serif;
+	font-size: 27px;
+	font-weight: 100;
+	line-height: 40px;
+	vertical-align: center;
+	color : #eeeeee;
+}
+
+#main {
+	position: relative;
+	width : 320px;
+	height: 200px;
+	padding: 20px;
+	margin : 80px auto 0px auto;
+	text-align : center;
+	border-radius: 6px;
+	background-color: #eeeeee;
+	box-shadow: 1px 2px 7px #87919d;
+}
+
+#intro_message {
+	width : auto;
+	height : 100px;
+	font-family: 'Nanum Gothic' , sans-serif;
+	font-size: 25px;
+	font-weight: 100;
+	line-height: 40px;
+	color : #5c6b7f;
+}
+
+#login_button {
+	width : 180px;
+	height : 40px;
+	border-radius: 2px;
+	line-height: 44px;
+	text-align: center;
+	margin: 14px auto 0px auto;
+	background-color: #424563;
+	color: #e5ecf3;
+	cursor : pointer;
+	font-size: 18px;
+	border: 0;
+}
+
+#introduction_button {
+	width : 90px;
+	height : 16px;
+	text-align: center;
+	margin: 34px auto 0px auto;
+	color : #5c6b7f;
+	cursor : pointer;
+	font-size: 14px;
+	border: 0;
+}
+
+#introduction {
+	display : block;
+	width : 320px;
+	height : 90px;
+	border-radius: 6px;
+	background-color: #eeeeee;
+	padding : 20px;
+	box-shadow: 1px 2px 7px #87919d;
+	margin : 20px auto 0 auto;
+	font-family: 'Nanum Gothic' , sans-serif;
+	font-size: 14px;
+	font-weight: 100;
+	line-height: 30px;
+	text-align: center;
+	color : #5c6b7f;
+}

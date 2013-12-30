@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel = "stylesheet" href = "stylesheets/main.css" type = "text/css" />
+	<link href='http://fonts.googleapis.com/css?family=Lato:100,300' rel='stylesheet' type='text/css'>
+	<script src = "/javascripts/jquery-1.10.2.min.js"></script>
+<title>Next Library</title>
+</head>
+<body>
+	<nav>
+		Next Library
+	</nav>
+	<div id = "userInfoPopUp">
+		<div id = "userInfoTitle">
+			회원정보
+		</div>
+		<div id = "userInfoPopUpClose">
+			<img src = "/images/userInfoClose.png" id = "userInfoClose">
+		</div>
+		<div id = "infoSection">
+			<div id = "userName">
+				김남훈
+			</div>
+			<div id = "record">
+				지금까지 25번 책을 찾으셨어요!
+			</div>
+		</div>
+	</div>
+	<div id = "settingPopUp">
+		<div id = "settingPopUpClose">
+			<img src = "/images/userInfoClose.png" id = "settingClose">
+		</div>
+		<div id = "logoutButton">
+			로그아웃
+		</div>
+	</div>
+	<div id = "contentsView">
+		<aside>
+			<div id = "writeRequest">
+				<img src = "/images/write.png"/ id = "writeIcon">
+			</div>
+			<div id = "userInfoRequest">
+				<img src = "/images/user.png"/ id = "userIcon">
+			</div>
+			<div id = "settingRequest">
+				<img src = "/images/setting.png"/ id = "settingIcon">
+			</div>
+			<div id = "toWatingListButton" onclick="location.href='#waitingList';">
+				대기
+			</div>
+			<div id = "toCompleteListButton" onclick="location.href='#completeList';">
+				완료
+			</div>
+		</aside>
+		<div id = "waitingList">
+			<!-- forEach, each book contents -->
+			<div class = "listTitle">
+				<div class = "title">
+					이 책들이 라이브러리에 가고 싶어해요
+				</div>
+				<div class = "line">
+				</div>
+			</div>
+			<div class = "bookCard">
+			 	<div class = "topLineUpper">
+			 	</div>
+			 	<div class = "topLineBottom">
+			 	</div>
+			 	<div class = "bookCardTitle">
+			 		Book Card
+			 	</div>
+			 	<div class = "findingMessage">
+			 		김남훈 님이 찾습니다!
+			 	</div>
+			 	<div class = "bookTitle">
+			 		안드로이드 정복하기 (사실 벌써 함)<br/>
+			 		몬테카를로~~ <br/>
+			 		카를로몬테~~	
+			 	</div>
+			 	<div class = "bookNumber">
+			 		라이브러리 넘버 : F4-3
+			 	</div>
+			 	<div class = "returnCompleteButton" onclick="location.href='';">
+			 		반납완료
+			 	</div>
+			</div>
+			<div class = "bookCard">
+			 	<div class = "topLineUpper">
+			 	</div>
+			 	<div class = "topLineBottom">
+			 	</div>
+			 	<div class = "bookCardTitle">
+			 		Book Card
+			 	</div>
+			 	<div class = "findingMessage">
+			 		김남훈 님이 찾습니다!
+			 	</div>
+			 	<div class = "bookTitle">
+			 		안드로이드 정복하기 (사실 벌써 함)<br/>
+			 		몬테카를로~~ <br/>
+			 		카를로몬테~~	
+			 	</div>
+			 	<div class = "bookNumber">
+			 		라이브러리 넘버 : F4-3
+			 	</div>
+			 	<div class = "returnCompleteButton" onclick="location.href='';">
+			 		반납완료
+			 	</div>
+			</div>
+			<div class = "bookCard">
+			 	<div class = "topLineUpper">
+			 	</div>
+			 	<div class = "topLineBottom">
+			 	</div>
+			 	<div class = "bookCardTitle">
+			 		Book Card
+			 	</div>
+			 	<div class = "findingMessage">
+			 		김남훈 님이 찾습니다!
+			 	</div>
+			 	<div class = "bookTitle">
+			 		안드로이드 정복하기 (사실 벌써 함)<br/>
+			 		몬테카를로~~ <br/>
+			 		카를로몬테~~	
+			 	</div>
+			 	<div class = "bookNumber">
+			 		라이브러리 넘버 : F4-3
+			 	</div>
+			 	<div class = "returnCompleteButton" onclick="location.href='';">
+			 		반납완료
+			 	</div>
+			</div>
+			<div class = "bookCard">
+			 	<div class = "topLineUpper">
+			 	</div>
+			 	<div class = "topLineBottom">
+			 	</div>
+			 	<div class = "bookCardTitle">
+			 		Book Card
+			 	</div>
+			 	<div class = "findingMessage">
+			 		김남훈 님이 찾습니다!
+			 	</div>
+			 	<div class = "bookTitle">
+			 		안드로이드 정복하기 (사실 벌써 함)<br/>
+			 		몬테카를로~~ <br/>
+			 		카를로몬테~~	
+			 	</div>
+			 	<div class = "bookNumber">
+			 		라이브러리 넘버 : F4-3
+			 	</div>
+			 	<div class = "returnCompleteButton" onclick="location.href='';">
+			 		반납완료
+			 	</div>
+			</div>
+			<div class = "bookCard">
+			 	<div class = "topLineUpper">
+			 	</div>
+			 	<div class = "topLineBottom">
+			 	</div>
+			 	<div class = "bookCardTitle">
+			 		Book Card
+			 	</div>
+			 	<div class = "findingMessage">
+			 		김남훈 님이 찾습니다!
+			 	</div>
+			 	<div class = "bookTitle">
+			 		안드로이드 정복하기 (사실 벌써 함)<br/>
+			 		몬테카를로~~ <br/>
+			 		카를로몬테~~	
+			 	</div>
+			 	<div class = "bookNumber">
+			 		라이브러리 넘버 : F4-3
+			 	</div>
+			 	<div class = "returnCompleteButton" onclick="location.href='';">
+			 		반납완료
+			 	</div>
+			</div>
+		</div>
+		<div id = "completeList">
+			<div class = "listTitle">
+				<div class = "title">
+					이 책들은 라이브러리에 도착했어요!
+				</div>
+				<div class = "line">
+				</div>
+			</div>
+			<!-- forEach, each book contents -->
+			<div class = "bookCard">
+				<div class = "topLineUpper">
+			 	</div>
+			 	<div class = "topLineBottom">
+			 	</div>
+			 	<div class = "bookCardTitle">
+			 		Book Card
+			 	</div>
+			</div>
+			<div class = "bookCard">
+				<div class = "topLineUpper">
+			 	</div>
+			 	<div class = "topLineBottom">
+			 	</div>
+			 	<div class = "bookCardTitle">
+			 		Book Card
+			 	</div>
+			</div>
+			<div class = "bookCard">
+				<div class = "topLineUpper">
+			 	</div>
+			 	<div class = "topLineBottom">
+			 	</div>
+			 	<div class = "bookCardTitle">
+			 		Book Card
+			 	</div>
+			</div>
+			<div class = "bookCard">
+				<div class = "topLineUpper">
+			 	</div>
+			 	<div class = "topLineBottom">
+			 	</div>
+			 	<div class = "bookCardTitle">
+			 		Book Card
+			 	</div>
+			</div>
+			<div class = "bookCard">
+				<div class = "topLineUpper">
+			 	</div>
+			 	<div class = "topLineBottom">
+			 	</div>
+			 	<div class = "bookCardTitle">
+			 		Book Card
+			 	</div>
+			</div>
+			<div class = "bookCard">
+				<div class = "topLineUpper">
+			 	</div>
+			 	<div class = "topLineBottom">
+			 	</div>
+			 	<div class = "bookCardTitle">
+			 		Book Card
+			 	</div>
+			</div>
+		</div>		
+	</div>
+	<footer>
+		2014 &nbsp; YoungKim &nbsp; @nhnnext.org
+	</footer>
+</body>
+<script src = "/javascripts/main.js"></script>
+</html>
