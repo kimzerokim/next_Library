@@ -34,22 +34,20 @@ if ('development' == app.get('env')) {
 }
 
 //app.get('/', routes.index);
-(function () {
-    app.get('/users', user.list);
-    app.get('/', function (req, res) {
-        res.sendfile(__dirname + '/views/home.html');
-    });
-    app.get('/login', function (req, res) {
-        res.sendfile(__dirname + '/views/login.html');
-    });
-    app.get('/register', function (req, res) {
-        res.sendfile(__dirname + '/views/register.html');
-    });
-    app.get('/main', function (req, res) {
-        res.sendfile(__dirname + '/views/main.html');
-    });
 
-}());
+app.get('/users', user.list);
+app.get('/', function (req, res) {
+    res.sendfile(__dirname + '/views/home.html');
+});
+app.get('/login', function (req, res) {
+    res.sendfile(__dirname + '/views/login.html');
+});
+app.get('/register', function (req, res) {
+    res.sendfile(__dirname + '/views/register.html');
+});
+app.get('/main', function (req, res) {
+    res.sendfile(__dirname + '/views/main.html');
+});
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));

@@ -71,4 +71,4 @@ var aside = {
 
 document.getElementByN
 
-window.onload = onload.execute();
+window.onload = onload.execute.bind(onload);
