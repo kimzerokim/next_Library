@@ -1,0 +1,94 @@
+/* reset align */
+body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textare a,button,select{margin:0;padding:0}
+body,input,textarea,select,button,table{font-family:'�뗭�',Dotum,AppleGothic,sans-serif;font-size:1em}
+img,fieldset{border:0}
+ul,ol{list-style:none}
+em,address{font-style:normal} a{text-decoration:none} a:hover,a:active,a:focus{text-decoration:underline}
+
+body {
+	background-color: #dbd8d8;
+}
+
+nav {
+	position : fixed;
+	top: 0;
+	width: 100%;
+	background-color: #46485b;
+	height: 40px;
+	box-shadow: 0px 1px 7px #4e5762;
+	z-index: 3;
+	text-align: center;
+	font-family: 'Lato', 'Nanum Gothic' , sans-serif;
+	font-size: 27px;
+	font-weight: 100;
+	line-height: 40px;
+	vertical-align: center;
+	color : #eeeeee;
+}
+
+nav #home {
+	cursor: pointer;
+}
+
+#registerSection {
+	width: 420px;
+	height: 350px;
+	border-radius: 5px;
+	margin : 80px auto 0px auto;
+	background-color : white;
+	box-shadow: 0px 3px 20px #4e5762;
+}
+
+#registerMessage {
+	width: 360px;
+	height: 70px;
+	line-height: 70px;
+	text-align: center;
+	margin: 0 auto;
+	z-index: 1;
+	font-size: 40px;
+	font-weight: 100;
+	font-family: 'Lato', 'Nanum Gothic', sans-serif;
+	color: #59626d;
+	border-bottom: 2px dotted #cb7676;
+}
+
+#registerForm {
+	width: 360px;
+	height: 260px;
+	text-align: center;
+	margin: 22px auto 0px auto;
+	font-family: 'Nanum Gothic' , sans-serif;
+}
+
+.blank {
+	width: 300px;
+	height: 20px;
+}
+
+.inputCell {
+	height: 24px;
+	border: 1px solid #a5abb2;
+	border-radius: 2px;
+	margin: 0 auto;
+	font-size: 14px;
+}
+
+#fileUploadButton {
+	height: 24px;
+	width: 234px;
+}
+
+#registerButton {
+	width : 80px;
+	height : 36px;
+	border-radius: 2px;
+	margin : 10px 0px 0px 0px;
+	line-height: 40px;
+	text-align: center;
+	background-color: #424563;
+	color: #e5ecf3;
+	cursor : pointer;
+	font-size: 14px;
+	border: 0;
+}

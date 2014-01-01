@@ -1,0 +1,28 @@
+//indent, space
+!!! 5
+html
+    head
+        meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+        title Register Page
+        link(rel='stylesheet', href='/stylesheets/register.css', type='text/css')
+        link(href='http://fonts.googleapis.com/css?family=Lato:100,300', rel='stylesheet', type='text/css')
+    body
+        nav
+            #home(onclick='location.href=\'/\';')
+                | Next Library
+        #registerSection
+            #registerMessage
+                | Register
+            #registerForm
+                form(action='/register/enter', method='post')
+                    input.inputCell(type='text', name='userId', placeholder=' ID')
+                    .blank
+                    input.inputCell(type='text', name='nickName', placeholder=' Nickname')
+                    .blank
+                    input.inputCell(type='password', name='password', placeholder=' Password')
+                    .blank
+                    input.inputCell(type='password', name='rePassword', placeholder=' re-enter Password')
+                    .blank
+                    button#registerButton(type='submit')
+                        | 가입하기
+

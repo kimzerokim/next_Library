@@ -28,6 +28,10 @@ nav {
 	color : #eeeeee;
 }
 
+nav #home {
+	cursor: pointer;
+}
+
 #userInfoPopUp {
 	position : fixed;
 	display: none;

@@ -1,0 +1,169 @@
+//indent, space
+!!! 5
+html
+    head
+        meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+        link(rel='stylesheet', href='stylesheets/main.css', type='text/css')
+        link(href='http://fonts.googleapis.com/css?family=Lato:100,300', rel='stylesheet', type='text/css')
+        script(src='/javascripts/jquery-1.10.2.min.js')
+        title Next Library
+    body
+        nav
+            #home(onclick='location.href=\'/\';')
+                | Next Library
+        #userInfoPopUp
+            #userInfoTitle
+                | 회원정보
+            #userInfoPopUpClose
+                img#userInfoClose(src='/images/userInfoClose.png')
+            #infoSection
+                #userName
+                    | 김남훈
+                #record
+                    | 지금까지 25번 책을 찾으셨어요!
+        #settingPopUp
+            #settingPopUpClose
+                img#settingClose(src='/images/userInfoClose.png')
+            #logoutButton
+                | 로그아웃
+        #contentsView
+            aside
+                #writeRequest
+                    img#writeIcon(src='/images/write.png')
+                #userInfoRequest
+                    img#userIcon(src='/images/user.png')
+                #settingRequest
+                    img#settingIcon(src='/images/setting.png')
+                #toWatingListButton(onclick='location.href=\'#waitingList\';')
+                    | 대기
+                #toCompleteListButton(onclick='location.href=\'#completeList\';')
+                    | 완료
+            #waitingList
+                .listTitle
+                    .title
+                        | 이 책들이 라이브러리에 가고 싶어해요
+                    .line
+                .bookCard
+                    .topLineUpper
+                    .topLineBottom
+                    .bookCardTitle
+                        | Book Card
+                    .findingMessage
+                        | 김남훈 님이 찾습니다!
+                    .bookTitle
+                        | 안드로이드 정복하기 (사실 벌써 함)
+                        br
+                        | 몬테카를로~~
+                        br
+                        | 카를로몬테~~
+                    .bookNumber
+                        | 라이브러리 넘버 : F4-3
+                    .returnCompleteButton(onclick='location.href=\'\';')
+                        | 반납완료
+                .bookCard
+                    .topLineUpper
+                    .topLineBottom
+                    .bookCardTitle
+                        | Book Card
+                    .findingMessage
+                        | 김남훈 님이 찾습니다!
+                    .bookTitle
+                        | 안드로이드 정복하기 (사실 벌써 함)
+                        br
+                        | 몬테카를로~~
+                        br
+                        | 카를로몬테~~
+                    .bookNumber
+                        | 라이브러리 넘버 : F4-3
+                    .returnCompleteButton(onclick='location.href=\'\';')
+                        | 반납완료
+                .bookCard
+                    .topLineUpper
+                    .topLineBottom
+                    .bookCardTitle
+                        | Book Card
+                    .findingMessage
+                        | 김남훈 님이 찾습니다!
+                    .bookTitle
+                        | 안드로이드 정복하기 (사실 벌써 함)
+                        br
+                        | 몬테카를로~~
+                        br
+                        | 카를로몬테~~
+                    .bookNumber
+                        | 라이브러리 넘버 : F4-3
+                    .returnCompleteButton(onclick='location.href=\'\';')
+                        | 반납완료
+                .bookCard
+                    .topLineUpper
+                    .topLineBottom
+                    .bookCardTitle
+                        | Book Card
+                    .findingMessage
+                        | 김남훈 님이 찾습니다!
+                    .bookTitle
+                        | 안드로이드 정복하기 (사실 벌써 함)
+                        br
+                        | 몬테카를로~~
+                        br
+                        | 카를로몬테~~
+                    .bookNumber
+                        | 라이브러리 넘버 : F4-3
+                    .returnCompleteButton(onclick='location.href=\'\';')
+                        | 반납완료
+                .bookCard
+                    .topLineUpper
+                    .topLineBottom
+                    .bookCardTitle
+                        | Book Card
+                    .findingMessage
+                        | 김남훈 님이 찾습니다!
+                    .bookTitle
+                        | 안드로이드 정복하기 (사실 벌써 함)
+                        br
+                        | 몬테카를로~~
+                        br
+                        | 카를로몬테~~
+                    .bookNumber
+                        | 라이브러리 넘버 : F4-3
+                    .returnCompleteButton(onclick='location.href=\'\';')
+                        | 반납완료
+            #completeList
+                .listTitle
+                    .title
+                        | 이 책들은 라이브러리에 도착했어요!
+                    .line
+                .bookCard
+                    .topLineUpper
+                    .topLineBottom
+                    .bookCardTitle
+                        | Book Card
+                .bookCard
+                    .topLineUpper
+                    .topLineBottom
+                    .bookCardTitle
+                        | Book Card
+                .bookCard
+                    .topLineUpper
+                    .topLineBottom
+                    .bookCardTitle
+                        | Book Card
+                .bookCard
+                    .topLineUpper
+                    .topLineBottom
+                    .bookCardTitle
+                        | Book Card
+                .bookCard
+                    .topLineUpper
+                    .topLineBottom
+                    .bookCardTitle
+                        | Book Card
+                .bookCard
+                    .topLineUpper
+                    .topLineBottom
+                    .bookCardTitle
+                        | Book Card
+        footer
+            | 2014   YoungKim   @nhnnext.org
+script(src='/javascripts/main.js')
+

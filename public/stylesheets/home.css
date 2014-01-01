@@ -28,6 +28,10 @@ nav {
 	color : #eeeeee;
 }
 
+nav #home {
+	cursor: pointer;
+}
+
 #main {
 	position: relative;
 	width : 320px;
@@ -51,27 +55,30 @@ nav {
 }
 
 #login_button {
-	width : 180px;
-	height : 40px;
+	width : 160px;
+	height : 36px;
 	border-radius: 2px;
-	line-height: 44px;
+	line-height: 40px;
+	text-align: center;
+	margin: 0px auto 0px auto;
+	background-color: #424563;
+	color: #e5ecf3;
+	cursor : pointer;
+	font-size: 16px;
+	border: 0;
+}
+
+#register_button {
+	width : 160px;
+	height : 36px;
+	border-radius: 2px;
+	line-height: 40px;
 	text-align: center;
 	margin: 14px auto 0px auto;
 	background-color: #424563;
 	color: #e5ecf3;
 	cursor : pointer;
-	font-size: 18px;
-	border: 0;
-}
-
-#introduction_button {
-	width : 90px;
-	height : 16px;
-	text-align: center;
-	margin: 34px auto 0px auto;
-	color : #5c6b7f;
-	cursor : pointer;
-	font-size: 14px;
+	font-size: 16px;
 	border: 0;
 }
 

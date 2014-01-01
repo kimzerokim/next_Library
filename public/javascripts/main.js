@@ -69,6 +69,4 @@ var aside = {
 	}
 };
 
-document.getElementByN
-
-window.onload = onload.execute.bind(onload);
+window.onload = onload.execute();

@@ -8,47 +8,52 @@ var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
 
+// mysql connection configure
+var mysql = require('mysql');
+var DBconnection = mysql.createConnection({
+    host: 'localhost',
+    user: 'nodeMaster',
+    password: 'node'
+});
+DBconnection.connect();
+
 var app = express();
 
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-app.set('view option', {
-    layout: false
-});
+app.set('view option', { layout: false });
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
+app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
-
-//add by me
-//app.engine('html', require('ejs').renderFile);
+app.use(express.session());
 
 // development only
 if ('development' == app.get('env')) {
     app.use(express.errorHandler());
 }
 
-//app.get('/', routes.index);
+//start
+app.get('/', routes.start);
 
-app.get('/users', user.list);
-app.get('/', function (req, res) {
-    res.sendfile(__dirname + '/views/home.html');
-});
-app.get('/login', function (req, res) {
-    res.sendfile(__dirname + '/views/login.html');
-});
-app.get('/register', function (req, res) {
-    res.sendfile(__dirname + '/views/register.html');
-});
-app.get('/main', function (req, res) {
-    res.sendfile(__dirname + '/views/main.html');
-});
+//login
+app.get('/login', routes.login);
 
+//register
+app.get('/register', routes.register);
+app.post('/register/enter', routes.registerEnter);
+
+//main
+app.get('/:id', routes.main);
+
+
+//create Node Server
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
 });
