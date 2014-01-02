@@ -16,9 +16,14 @@ var conn = mysql.createConnection(mysqlConfig);
 //start Route
 
 exports.start = function (req, res) {
-    if (false) {
+    //loginStatus on
+    if (req.session.loginStatus) {
+        res.redirect('/' + req.session.userId);
     }
+    //loginStatus off
     else {
+        console.log("로그인 실패");
+        req.session.loginStatus = false;
         res.render('start');
     }
 };
@@ -35,6 +40,12 @@ exports.loginEnter = function (req, res) {
     var userId = req.body.userId;
     var password = req.body.password;
 
+    function setSessionEndRedirect() {
+        req.session.loginStatus = true;
+        req.session.userId = userId;
+        res.redirect('/');
+    };
+
     conn.query(
         'SELECT userId, password from user WHERE userId = "' + userId + '"', function (err, row) {
             if (err) {
@@ -44,17 +55,37 @@ exports.loginEnter = function (req, res) {
                 res.render('error', {errorMsg: '이 아이디는 없는 아이디에용'});
             }
             else {
-                conn.query (
-                    '', function (err, row){
+                conn.query(
+                    'SELECT userId, password from user WHERE userId = "'
+                        + userId + '" AND password = PASSWORD("' + password + '")', function (err, row) {
                         if (err) {
                             throw err;
+                        }
+                        if (row.length == 0) {
+                            res.render('error', {errorMsg: '비밀번호가 틀렸네요'});
+                        }
+                        else {
+                            console.log("로그인 완료");
+                            //userName을 가져오기위해 한번 더 조회
+                            conn.query('SELECT name, find_count FROM user WHERE userId = "' + userId + '"', function (err, row) {
+                                if (err) {
+                                    throw err;
+                                }
+                                req.session.userName = row[0].name;
+                                req.session.find_count = row[0].find_count;
+                                setSessionEndRedirect();
+                            });
                         }
                     }
                 )
             }
         }
     );
+};
 
+exports.logout = function (req, res) {
+    req.session.loginStatus = false;
+    res.redirect('/');
 };
 
 exports.register = function (req, res) {
@@ -74,7 +105,6 @@ exports.registerEnter = function (req, res) {
             password: password
         };
         console.log(query);
-        var name2 = "eee";
 
         // id 중복값이 있는지 확인하자.
         conn.query(
@@ -95,7 +125,8 @@ exports.registerEnter = function (req, res) {
                             res.json({status: "SUCCESS"});
                         });
                     conn.query(
-                        'UPDATE user SET password = PASSWORD("' + password + '") WHERE userId = "' + userId + '"', function (err, result) {
+                        'UPDATE user SET password = PASSWORD("' +
+                            password + '") WHERE userId = "' + userId + '"', function (err) {
                             if (err) {
                                 throw err;
                             }
@@ -114,5 +145,31 @@ exports.registerEnter = function (req, res) {
 };
 
 exports.main = function (req, res) {
-    res.render('main');
+    console.log("####################################");
+    console.log(req.session.loginStatus);
+    console.log(req.session.userId);
+    console.log(req.session.userName);
+    console.log("####################################");
+    res.render('main', {userName: req.session.userName, userFindCount: req.session.find_count});
+};
+
+//write
+
+exports.searchBook = function (req, res) {
+    var searchQuery = req.body.bookTitle;
+    var bookStatus = {};
+
+    function receiveQuery(row) {
+        bookStatus = row;
+        res.contentType('json');
+        res.send(bookStatus);
+    };
+
+    conn.query('SELECT location, title FROM book WHERE title = SUBSTRING_INDEX("' + searchQuery + '",\' \' , 1)', function (err, row) {
+        if (err) {
+            throw err;
+        }
+        console.log(row[0]);
+        receiveQuery(row[0]);
+    });
 };

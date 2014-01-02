@@ -11,6 +11,31 @@ html
         nav
             #home(onclick='location.href=\'/\';')
                 | Next Library
+        #writePopUp
+            #writeTitle
+                | 책을 찾자
+            #writePopUpClose
+                img#writeClose(src='/images/userInfoClose.png')
+            #writeSection
+                form(action = '/searchBookForRequest', method = 'post')
+                    input.inputCell(type='text', name='bookTitle', placeholder = ' Book Title (띄어쓰기 ㄴㄴ해)')   
+                    button#searchButton(type='submit')
+                        | 검색
+                #searchResult
+                    table#searchTable
+                        colgroup
+                            col.c1
+                            col.c2
+                            col.c3             		
+                        tr
+                            td#table1(style = 'border-right: 1px solid #a5abb2;')
+                                | FG-4
+                            td#table2(style = 'border-right: 1px solid #a5abb2;')
+                                | 이 책 제목
+                            td#table3
+                                | 가출중
+            #writeButton(onclick ='location.href = \'/writeComplete\';')
+                책을 찾아요!   
         #userInfoPopUp
             #userInfoTitle
                 | 회원정보
@@ -18,13 +43,13 @@ html
                 img#userInfoClose(src='/images/userInfoClose.png')
             #infoSection
                 #userName
-                    | 김남훈
+                    | #{userName}
                 #record
-                    | 지금까지 25번 책을 찾으셨어요!
+                    | 지금까지 #{userFindCount}번 책을 찾으셨어요!
         #settingPopUp
             #settingPopUpClose
                 img#settingClose(src='/images/userInfoClose.png')
-            #logoutButton
+            #logoutButton(onclick ='location.href = \'/logout\';')
                 | 로그아웃
         #contentsView
             aside

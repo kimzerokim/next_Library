@@ -19,11 +19,13 @@ app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
+//app.use(express.cookieDecoder());
 app.use(express.bodyParser());
+app.use(express.cookieParser());
+app.use(express.session({ secret: "keyboard cat" }));
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.session());
 
 // development only
 if ('development' == app.get('env')) {
@@ -37,6 +39,7 @@ app.get('/error', routes.error);
 //login
 app.get('/login', routes.login);
 app.post('/loginComplete', routes.loginEnter);
+app.get('/logout', routes.logout);
 
 //register
 app.get('/register', routes.register);
@@ -44,6 +47,9 @@ app.post('/registerComplete', routes.registerEnter);
 
 //main
 app.get('/:id', routes.main);
+
+//write
+app.post('/searchBookForRequest', routes.searchBook);
 
 
 //create Node Server

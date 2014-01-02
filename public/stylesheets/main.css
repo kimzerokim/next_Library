@@ -32,6 +32,116 @@ nav #home {
 	cursor: pointer;
 }
 
+#writePopUp {
+    display: none;
+	position : fixed;
+	z-index: 2;
+	width : 640px;
+	min-height: 220px;
+	left : 50%;
+	margin : 42px 0px 0px -321px;
+	background-color : #eeeeee;
+	box-shadow: 4px 4px 7px #5e646c;
+}
+
+#writePopUp #writeTitle {
+	float : left;
+	width : 160px;
+	height : 30px;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size : 25px;
+	letter-spacing: 3px;
+	text-align: center;
+	margin : 16px 0px 0px 240px;
+	color : #4c5561;
+}
+
+#writePopUp #writeClose {
+	width : 26px;
+	height : 26px;
+	float : right;
+	margin : 17px 17px 0px 0px;
+	cursor : pointer;
+}
+
+#writePopUp #writeSection {
+	width : 580px;
+	min-height : 72px;
+	background-color: #ffffff;
+	margin: 64px auto 0px auto;
+	box-shadow: 1px 2px 7px #87919d;
+}
+
+#writePopUp #writeSection .inputCell {
+	height: 25px;
+	border: 1px solid #a5abb2;
+	border-radius: 2px;
+	margin: 0px 30px 0px 144px;
+	font-size: 14px;
+}
+
+#writePopUp #writeSection #searchButton {
+	width : 44px;
+	height : 28px;
+	border-radius: 4px;
+	line-height: 22px;
+	text-align: center;
+	vertical-align: center;
+	margin: 20px auto 20px auto;
+	background-color: #424242;
+	color: #e5ecf3;
+	cursor : pointer;
+	font-size: 14px;
+	font-family : 'Nanum Gothic' , sans-serif;
+	border: 0px;
+}
+
+#writePopUp #searchResult {
+    height : auto;
+    width: auto;
+    padding-bottom: 6px;
+    display: none;
+}
+
+#writePopUp #searchTable {
+	width : 520px;
+	height : 28px;
+	border: 1px solid #a5abb2;
+	border-radius: 2px;
+	margin: 6px auto 20px auto;
+	font-size: 14px;
+	font-family : 'Nanum Gothic' , sans-serif;
+	text-align: center;
+	color : #54585c;
+}
+
+#writePopUp #searchResult .c1 {
+	width: 100px;
+}
+
+#writePopUp #searchResult .c2 {
+	width : 320px;
+}	
+
+#writePopUp #searchResult .c3 {
+	width: 100px;
+}	
+
+#writePopUp #writeButton {
+	width : 90px;
+	height : 38px;
+	border-radius: 4px;
+	line-height: 38px;
+	text-align: center;
+	vertical-align: center;
+	margin: 22px auto 20px auto;
+	background-color: #424242;
+	color: #e5ecf3;
+	cursor : pointer;
+	font-size: 14px;
+	font-family : 'Nanum Gothic' , sans-serif;
+}
+
 #userInfoPopUp {
 	position : fixed;
 	display: none;
@@ -130,7 +240,7 @@ nav #home {
 	text-align: center;
 	vertical-align: center;
 	margin: 58px 42px 0px auto;
-	background-color: #64666d;
+	background-color: #424242;
 	color: #e5ecf3;
 	cursor : pointer;
 	font-size: 17px;
