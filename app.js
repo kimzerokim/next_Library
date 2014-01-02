@@ -8,15 +8,6 @@ var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
 
-// mysql connection configure
-var mysql = require('mysql');
-var DBconnection = mysql.createConnection({
-    host: 'localhost',
-    user: 'nodeMaster',
-    password: 'node'
-});
-DBconnection.connect();
-
 var app = express();
 
 // all environments
@@ -41,13 +32,15 @@ if ('development' == app.get('env')) {
 
 //start
 app.get('/', routes.start);
+app.get('/error', routes.error);
 
 //login
 app.get('/login', routes.login);
+app.post('/loginComplete', routes.loginEnter);
 
 //register
 app.get('/register', routes.register);
-app.post('/register/enter', routes.registerEnter);
+app.post('/registerComplete', routes.registerEnter);
 
 //main
 app.get('/:id', routes.main);

@@ -1,0 +1,87 @@
+/* reset align */
+body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textare a,button,select{margin:0;padding:0}
+body,input,textarea,select,button,table{font-family:'�뗭�',Dotum,AppleGothic,sans-serif;font-size:1em}
+img,fieldset{border:0}
+ul,ol{list-style:none}
+em,address{font-style:normal} a{text-decoration:none} a:hover,a:active,a:focus{text-decoration:underline}
+
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css); 
+
+body {
+	background-color: #dbd8d8;
+}
+
+nav {
+	position : fixed;
+	top: 0;
+	width: 100%;
+	background-color: #46485b;
+	height: 40px;
+	box-shadow: 0px 1px 7px #4e5762;
+	z-index: 3;
+	text-align: center;
+	font-family: 'Lato', 'Nanum Gothic' , sans-serif;
+	font-size: 27px;
+	font-weight: 100;
+	line-height: 40px;
+	vertical-align: center;
+	color : #eeeeee;
+	d1isplay: none;
+}
+
+nav #home {
+	cursor: pointer;
+}
+
+#error {
+	width : 480px;
+	height: 100px;
+	color: #59626d;
+	margin : 70px auto 0px auto;
+	font-family: 'Lato', 'Nanum Gothic' , sans-serif;
+	font-weight: 100;
+	font-size : 70px;
+	text-align: center;
+	line-height: 100px;
+	vertical-align: middle;
+}
+
+#detailMessage {
+	width : 500px;
+	min-height: 40px;
+	word-break: break-word;
+	margin : 20px auto 0px auto;
+	background : #eeeeee;
+	border-radius: 8px;
+	box-shadow: 0px 1px 7px #4e5762;
+}
+
+#detailMessage .MsgContainer {
+	width : 480px;
+	min-height: 20px;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size: 14px;
+	text-align : center;
+	line-height: 50px;
+	margin : 10px auto 0px auto;
+}
+
+#mainMessage {
+	width: 500px;
+	height: 206px;
+	color: #59626d;
+	margin: 20px auto 0px auto;
+	background : #eeeeee;
+	border-radius: 8px;
+	box-shadow: 0px 1px 7px #4e5762;
+}
+
+#mainMessage .MsgContainer {
+	width : 480px;
+	height: 150px;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size: 18px;
+	text-align : center;
+	line-height: 40px;
+	margin : 10px auto 0px auto;
+}

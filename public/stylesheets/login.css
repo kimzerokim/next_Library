@@ -9,11 +9,6 @@ em,address{font-style:normal} a{text-decoration:none} a:hover,a:active,a:focus{t
 
 body {
 	background-color: #dbd8d8;
-/*
-	background-image: url('/images/welcomePage_background.jpg');
-	background-size: inherit;
-*/
-	font-family: 'Lato','Nanum Gothic' , sans-serif;
 }
 
 nav {

@@ -14,10 +14,10 @@ html
             #registerMessage
                 | Register
             #registerForm
-                form(action='/register/enter', method='post')
+                form(action='/registerComplete', method='post')
                     input.inputCell(type='text', name='userId', placeholder=' ID')
                     .blank
-                    input.inputCell(type='text', name='nickName', placeholder=' Nickname')
+                    input.inputCell(type='text', name='userName', placeholder=' RealName')
                     .blank
                     input.inputCell(type='password', name='password', placeholder=' Password')
                     .blank
