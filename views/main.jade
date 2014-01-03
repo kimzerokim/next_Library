@@ -75,11 +75,11 @@ html
                     .bookCardTitle
                         | Book Card
                     .findingMessage
-                        | #{userName} 님이 찾습니다!
+                        | #{cardUserName} 님이 찾습니다!
                     .bookTitle
-                        | #{bookTitle}
+                        | #{cardBookTitle}
                     .bookNumber
-                        | 라이브러리 넘버 : #{bookLocation}
+                        | 라이브러리 넘버 : #{cardBookLocation}
                     .returnCompleteButton(onclick='location.href=\'\';')
                         | 반납완료
             #completeList

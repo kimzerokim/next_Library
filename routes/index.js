@@ -151,10 +151,27 @@ exports.main = function (req, res) {
     var cardBookLocation;
 
     function createCard() {
-        conn.query()
+        conn.query('SELECT user.name userName, book.title title, book.location location ' +
+            'FROM user_has_book rel join book on rel.bookNum = book.bookNum ' +
+            'join user on user.userNum = rel.userNum', function (err, row) {
+            if (err) {
+                throw err;
+            }
+            configureVar(row[0]);
+        })
     };
 
-    res.render('main', {userName: req.session.userName, userFindCount: req.session.find_count});
+    function configureVar(row) {
+        cardUserName = row.userName;
+        cardBookTitle = row.title;
+        cardBookLocation = row.location;
+        res.render('main', {userName: req.session.userName, userFindCount: req.session.find_count,
+        cardUserName : cardUserName, cardBookTitle : cardBookTitle, cardBookLocation : cardBookLocation});
+    };
+
+    createCard();
+
+    //res.render('main', {userName: req.session.userName, userFindCount: req.session.find_count});
 };
 
 //write
