@@ -5,7 +5,6 @@ html
         meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
         link(rel='stylesheet', href='stylesheets/main.css', type='text/css')
         link(href='http://fonts.googleapis.com/css?family=Lato:100,300', rel='stylesheet', type='text/css')
-        script(src='/javascripts/jquery-1.10.2.min.js')
         title Next Library
     body
         nav
@@ -18,7 +17,7 @@ html
                 img#writeClose(src='/images/userInfoClose.png')
             #writeSection
                 form(action = '/searchBookForRequest', method = 'post')
-                    input.inputCell(type='text', name='bookTitle', placeholder = ' Book Title (띄어쓰기 ㄴㄴ해)')   
+                    input.inputCell(type='text', name='bookTitle', placeholder = ' Book Title (맨 앞만 ㅇㅇ)')   
                     button#searchButton(type='submit')
                         | 검색
                 #searchResult
@@ -34,8 +33,10 @@ html
                                 | 이 책 제목
                             td#table3
                                 | 가출중
-            #writeButton(onclick ='location.href = \'/writeComplete\';')
-                책을 찾아요!   
+            form#searchForm(action = '/writeComplete', method = 'post')
+                input#writeTitleInput(type = 'hidden', name = 'bookSendTitle')
+                button#writeButton(type = 'submit')
+                        | 책을 찾아요!   
         #userInfoPopUp
             #userInfoTitle
                 | 회원정보
@@ -74,83 +75,11 @@ html
                     .bookCardTitle
                         | Book Card
                     .findingMessage
-                        | 김남훈 님이 찾습니다!
+                        | #{userName} 님이 찾습니다!
                     .bookTitle
-                        | 안드로이드 정복하기 (사실 벌써 함)
-                        br
-                        | 몬테카를로~~
-                        br
-                        | 카를로몬테~~
+                        | #{bookTitle}
                     .bookNumber
-                        | 라이브러리 넘버 : F4-3
-                    .returnCompleteButton(onclick='location.href=\'\';')
-                        | 반납완료
-                .bookCard
-                    .topLineUpper
-                    .topLineBottom
-                    .bookCardTitle
-                        | Book Card
-                    .findingMessage
-                        | 김남훈 님이 찾습니다!
-                    .bookTitle
-                        | 안드로이드 정복하기 (사실 벌써 함)
-                        br
-                        | 몬테카를로~~
-                        br
-                        | 카를로몬테~~
-                    .bookNumber
-                        | 라이브러리 넘버 : F4-3
-                    .returnCompleteButton(onclick='location.href=\'\';')
-                        | 반납완료
-                .bookCard
-                    .topLineUpper
-                    .topLineBottom
-                    .bookCardTitle
-                        | Book Card
-                    .findingMessage
-                        | 김남훈 님이 찾습니다!
-                    .bookTitle
-                        | 안드로이드 정복하기 (사실 벌써 함)
-                        br
-                        | 몬테카를로~~
-                        br
-                        | 카를로몬테~~
-                    .bookNumber
-                        | 라이브러리 넘버 : F4-3
-                    .returnCompleteButton(onclick='location.href=\'\';')
-                        | 반납완료
-                .bookCard
-                    .topLineUpper
-                    .topLineBottom
-                    .bookCardTitle
-                        | Book Card
-                    .findingMessage
-                        | 김남훈 님이 찾습니다!
-                    .bookTitle
-                        | 안드로이드 정복하기 (사실 벌써 함)
-                        br
-                        | 몬테카를로~~
-                        br
-                        | 카를로몬테~~
-                    .bookNumber
-                        | 라이브러리 넘버 : F4-3
-                    .returnCompleteButton(onclick='location.href=\'\';')
-                        | 반납완료
-                .bookCard
-                    .topLineUpper
-                    .topLineBottom
-                    .bookCardTitle
-                        | Book Card
-                    .findingMessage
-                        | 김남훈 님이 찾습니다!
-                    .bookTitle
-                        | 안드로이드 정복하기 (사실 벌써 함)
-                        br
-                        | 몬테카를로~~
-                        br
-                        | 카를로몬테~~
-                    .bookNumber
-                        | 라이브러리 넘버 : F4-3
+                        | 라이브러리 넘버 : #{bookLocation}
                     .returnCompleteButton(onclick='location.href=\'\';')
                         | 반납완료
             #completeList
@@ -158,31 +87,6 @@ html
                     .title
                         | 이 책들은 라이브러리에 도착했어요!
                     .line
-                .bookCard
-                    .topLineUpper
-                    .topLineBottom
-                    .bookCardTitle
-                        | Book Card
-                .bookCard
-                    .topLineUpper
-                    .topLineBottom
-                    .bookCardTitle
-                        | Book Card
-                .bookCard
-                    .topLineUpper
-                    .topLineBottom
-                    .bookCardTitle
-                        | Book Card
-                .bookCard
-                    .topLineUpper
-                    .topLineBottom
-                    .bookCardTitle
-                        | Book Card
-                .bookCard
-                    .topLineUpper
-                    .topLineBottom
-                    .bookCardTitle
-                        | Book Card
                 .bookCard
                     .topLineUpper
                     .topLineBottom

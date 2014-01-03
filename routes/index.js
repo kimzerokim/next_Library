@@ -67,7 +67,8 @@ exports.loginEnter = function (req, res) {
                         else {
                             console.log("로그인 완료");
                             //userName을 가져오기위해 한번 더 조회
-                            conn.query('SELECT name, find_count FROM user WHERE userId = "' + userId + '"', function (err, row) {
+                            conn.query('SELECT name, find_count FROM user WHERE userId = "'
+                                + userId + '"', function (err, row) {
                                 if (err) {
                                     throw err;
                                 }
@@ -145,16 +146,18 @@ exports.registerEnter = function (req, res) {
 };
 
 exports.main = function (req, res) {
-    console.log("####################################");
-    console.log(req.session.loginStatus);
-    console.log(req.session.userId);
-    console.log(req.session.userName);
-    console.log("####################################");
+    var cardUserName;
+    var cardBookTitle;
+    var cardBookLocation;
+
+    function createCard() {
+        conn.query()
+    };
+
     res.render('main', {userName: req.session.userName, userFindCount: req.session.find_count});
 };
 
 //write
-
 exports.searchBook = function (req, res) {
     var searchQuery = req.body.bookTitle;
     var bookStatus = {};
@@ -165,11 +168,64 @@ exports.searchBook = function (req, res) {
         res.send(bookStatus);
     };
 
-    conn.query('SELECT location, title FROM book WHERE title = SUBSTRING_INDEX("' + searchQuery + '",\' \' , 1)', function (err, row) {
+    conn.query('SELECT location, title FROM book WHERE title = SUBSTRING_INDEX("'
+        + searchQuery + '",\' \' , 1)', function (err, row) {
         if (err) {
             throw err;
         }
         console.log(row[0]);
         receiveQuery(row[0]);
     });
+};
+
+exports.writeCard = function (req, res) {
+    var userId = req.session.userId;
+    var userNum;
+    var bookTitle = req.body.bookSendTitle;
+    var bookLocation;
+    var bookNum;
+
+    function bookConfigure() {
+        conn.query('SELECT bookNum, location FROM book WHERE title = "' + bookTitle + '"', function (err, row) {
+            if (err) {
+                throw err;
+            }
+            writeBookVar(row[0]);
+        });
+    };
+
+    function writeBookVar(row) {
+        console.log(row);
+        bookLocation = row.location;
+        bookNum = row.bookNum;
+        userConfigure();
+    };
+
+    function userConfigure() {
+        conn.query('SELECT userNum FROM user WHERE userId = "' + userId + '"', function (err, row) {
+            if (err) {
+                throw err;
+            }
+            writeUserVar(row[0]);
+        });
+    };
+
+    function writeUserVar(row) {
+        userNum = row.userNum;
+        writeRelation();
+    };
+
+    function writeRelation() {
+        conn.query('INSERT INTO user_has_book (userNum, bookNum) VALUES ("'
+            + userNum + '", "' + bookNum + '")', function (err) {
+            if (err) {
+                throw err;
+            }
+            console.log("finish");
+        });
+    };
+
+    bookConfigure();
+
+    res.redirect('/');
 };

@@ -14,7 +14,7 @@ var onload = {
 		userInfoButton.addEventListener("click", aside.userInfoEvent.popUp, true);
 		//userInfoButton.on("click", aside.userInfoPopUpEvent);
 		settingButton.addEventListener("click", aside.settingEvent.popUp, true);
-		searchButton.addEventListener("click", aside.writeEvent.bookRequest, true);
+		searchButton.addEventListener("click", aside.writeEvent.bookSearchRequest, true);
 	}
 };
 
@@ -48,7 +48,7 @@ var aside = {
 			util.unblurOtherField();
 		}, 
 		
-		bookRequest : function(e) {
+		bookSearchRequest : function(e) {
 		    e.preventDefault();
             var eleForm = e.currentTarget.form;
             var oFormData = new FormData(eleForm);
@@ -62,11 +62,12 @@ var aside = {
 				    var obj = JSON.parse(request.responseText);
 				    var rTable = document.getElementById("searchResult");
 				    rTable.style.display = "block";
-				    console.log(obj.title);
-                    var table1 = document.getElementById("table1");
+				    var table1 = document.getElementById("table1");
                     table1.innerHTML = obj.location;
                     var table2 = document.getElementById("table2");
-                    table2.innerHTML = obj.title;                    
+                    table2.innerHTML = obj.title;
+                    var writeTitleInput = document.getElementById("writeTitleInput");
+                    writeTitleInput.value = obj.title;           
                 };
             };            
             request.send(oFormData);

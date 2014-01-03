@@ -39,7 +39,7 @@ nav #home {
 	width : 640px;
 	min-height: 220px;
 	left : 50%;
-	margin : 42px 0px 0px -321px;
+	margin : 40px 0px 0px -321px;
 	background-color : #eeeeee;
 	box-shadow: 4px 4px 7px #5e646c;
 }
@@ -125,21 +125,30 @@ nav #home {
 
 #writePopUp #searchResult .c3 {
 	width: 100px;
+}
+
+#writePopUp #searchForm {
+    width : 520px;
+    height : 80px;
 }	
 
 #writePopUp #writeButton {
+    position : fixed;
 	width : 90px;
 	height : 38px;
 	border-radius: 4px;
 	line-height: 38px;
 	text-align: center;
 	vertical-align: center;
-	margin: 22px auto 20px auto;
+	left: 50%;
+	margin : 20px 0px 10px -46px;
+	1margin: 22px auto 20px auto;
 	background-color: #424242;
 	color: #e5ecf3;
 	cursor : pointer;
 	font-size: 14px;
 	font-family : 'Nanum Gothic' , sans-serif;
+	border: 0px;
 }
 
 #userInfoPopUp {

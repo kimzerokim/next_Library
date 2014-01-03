@@ -50,6 +50,7 @@ app.get('/:id', routes.main);
 
 //write
 app.post('/searchBookForRequest', routes.searchBook);
+app.post('/writeComplete', routes.writeCard);
 
 
 //create Node Server
