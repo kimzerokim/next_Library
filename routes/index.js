@@ -166,7 +166,7 @@ exports.main = function (req, res) {
         cardBookTitle = row.title;
         cardBookLocation = row.location;
         res.render('main', {userName: req.session.userName, userFindCount: req.session.find_count,
-        cardUserName : cardUserName, cardBookTitle : cardBookTitle, cardBookLocation : cardBookLocation});
+            cardUserName: cardUserName, cardBookTitle: cardBookTitle, cardBookLocation: cardBookLocation});
     };
 
     createCard();
@@ -185,14 +185,23 @@ exports.searchBook = function (req, res) {
         res.send(bookStatus);
     };
 
-    conn.query('SELECT location, title FROM book WHERE title = SUBSTRING_INDEX("'
-        + searchQuery + '",\' \' , 1)', function (err, row) {
+    conn.query('SELECT SUBSTRING_INDEX("' + searchQuery + '",\' \' , 1) AS frontQ', function (err, row) {
         if (err) {
             throw err;
         }
-        console.log(row[0]);
-        receiveQuery(row[0]);
+        var frontQ = row[0].frontQ;
+        frontQuerySend(frontQ);
     });
+
+    function frontQuerySend(frontQ) {
+        conn.query('SELECT location, title FROM book WHERE title LIKE "%' + frontQ + '%"', function (err, row) {
+            if (err) {
+                throw err;
+            }
+            receiveQuery(row[0]);
+            console.log(row[0]);
+        });
+    };
 };
 
 exports.writeCard = function (req, res) {
