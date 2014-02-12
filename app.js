@@ -32,7 +32,7 @@ if ('development' == app.get('env')) {
     app.use(express.errorHandler());
 }
 
-//start
+//homepage
 app.get('/', routes.start);
 app.get('/error', routes.error);
 

@@ -1,5 +1,26 @@
 // mysql connection configure
 var mysql = require('mysql');
+
+var extractConnection = (function(){	
+		var mysqlConfig = {
+    	host: 'localhost',
+		port: 3306,
+		user: 'nodeMaster',
+		password: 'node',
+		database: 'nextLibrary'
+		};
+	
+		var returnInfo = function() {
+			return mysqlConfig;
+		};
+		
+		return {
+			returnInfo : returnInfo
+		};
+	}());
+
+//console.log(extractConnection.returnInfo());
+/*
 var mysqlConfig = {
     host: 'localhost',
     port: 3306,
@@ -8,6 +29,8 @@ var mysqlConfig = {
     database: 'nextLibrary'
 };
 var conn = mysql.createConnection(mysqlConfig);
+*/
+var conn = mysql.createConnection(extractConnection.returnInfo());
 
 //conn.connect(); // 사실 쿼리날릴때 자동으로 연결됨.
 //conn.end(); // 이걸로 커넥션을 끊는다. -> 없는게 가장 편함. 여기서 오류가 많이 발생.
@@ -22,7 +45,8 @@ exports.start = function (req, res) {
     }
     //loginStatus off
     else {
-        console.log("로그인 실패");
+/*     	res.render('error', {errorMsg : "오랜만이네"}); */
+        console.log("로그아웃상태입니다.");
         req.session.loginStatus = false;
         res.render('start');
     }
@@ -157,13 +181,21 @@ exports.main = function (req, res) {
             if (err) {
                 throw err;
             }
+            if (row.length == 0) {
+            	//완전히 처음 사용할 때, 카드가 없을경우 이렇게 처리해줘야함.
+	            res.render('main', {userName: req.session.userName, userFindCount: req.session.find_count});	            
+            }
             configureVar(row[0]);
-        })
+        });
     };
 
     function configureVar(row) {
+    	console.log("error~~1");
+    	console.log(row);
         cardUserName = row.userName;
+        console.log("error~~2");
         cardBookTitle = row.title;
+        console.log("error~~3");
         cardBookLocation = row.location;
         res.render('main', {userName: req.session.userName, userFindCount: req.session.find_count,
             cardUserName: cardUserName, cardBookTitle: cardBookTitle, cardBookLocation: cardBookLocation});
