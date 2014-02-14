@@ -1,35 +1,23 @@
 // mysql connection configure
 var mysql = require('mysql');
 
-var extractConnection = (function(){	
-		var mysqlConfig = {
-    	host: 'localhost',
-		port: 3306,
-		user: 'nodeMaster',
-		password: 'node',
-		database: 'nextLibrary'
-		};
-	
-		var returnInfo = function() {
-			return mysqlConfig;
-		};
-		
-		return {
-			returnInfo : returnInfo
-		};
-	}());
+var extractConnection = (function () {
+    var mysqlConfig = {
+        host: 'localhost',
+        port: 3306,
+        user: 'nodeMaster',
+        password: 'node',
+        database: 'nextLibrary'
+    };
 
-//console.log(extractConnection.returnInfo());
-/*
-var mysqlConfig = {
-    host: 'localhost',
-    port: 3306,
-    user: 'nodeMaster',
-    password: 'node',
-    database: 'nextLibrary'
-};
-var conn = mysql.createConnection(mysqlConfig);
-*/
+    var returnInfo = function () {
+        return mysqlConfig;
+    };
+
+    return {
+        returnInfo: returnInfo
+    };
+}());
 var conn = mysql.createConnection(extractConnection.returnInfo());
 
 //conn.connect(); // 사실 쿼리날릴때 자동으로 연결됨.
@@ -45,7 +33,7 @@ exports.start = function (req, res) {
     }
     //loginStatus off
     else {
-/*     	res.render('error', {errorMsg : "오랜만이네"}); */
+        /*     	res.render('error', {errorMsg : "오랜만이네"}); */
         console.log("로그아웃상태입니다.");
         req.session.loginStatus = false;
         res.render('start');
@@ -174,36 +162,33 @@ exports.main = function (req, res) {
     var cardBookTitle;
     var cardBookLocation;
 
-    function createCard() {
+    function createCard(callback) {
         conn.query('SELECT user.name userName, book.title title, book.location location ' +
             'FROM user_has_book rel join book on rel.bookNum = book.bookNum ' +
             'join user on user.userNum = rel.userNum', function (err, row) {
             if (err) {
-                throw err;
+                callback(err, null);
             }
-            if (row.length == 0) {
-            	//완전히 처음 사용할 때, 카드가 없을경우 이렇게 처리해줘야함.
-	            res.render('main', {userName: req.session.userName, userFindCount: req.session.find_count});	            
+            else {
+                callback(null, row[0]);
             }
-            configureVar(row[0]);
         });
     };
 
-    function configureVar(row) {
-    	console.log("error~~1");
-    	console.log(row);
-        cardUserName = row.userName;
-        console.log("error~~2");
-        cardBookTitle = row.title;
-        console.log("error~~3");
-        cardBookLocation = row.location;
-        res.render('main', {userName: req.session.userName, userFindCount: req.session.find_count,
-            cardUserName: cardUserName, cardBookTitle: cardBookTitle, cardBookLocation: cardBookLocation});
-    };
-
-    createCard();
-
-    //res.render('main', {userName: req.session.userName, userFindCount: req.session.find_count});
+    createCard(function (err, row) {
+        if(err) throw err;
+        if(row.length == 0) {
+            //완전히 처음 사용할 때, 카드가 없을경우 이렇게 처리해줘야함.
+            res.render('main', {userName: req.session.userName, userFindCount : req.session.find_count});
+        }
+        else {
+            cardUserName = row.userName;
+            cardBookTitle = row.title;
+            cardBookLocation = row.location;
+            res.render('main', {userName: req.session.userName, userFindCount: req.session.find_count,
+                cardUserName: cardUserName, cardBookTitle: cardBookTitle, cardBookLocation: cardBookLocation});
+        }
+    });
 };
 
 //write
