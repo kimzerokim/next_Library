@@ -56,7 +56,7 @@ exports.loginEnter = function (req, res) {
         req.session.loginStatus = true;
         req.session.userId = userId;
         res.redirect('/');
-    };
+    }
 
     conn.query(
         'SELECT userId, password from user WHERE userId = "' + userId + '"', function (err, row) {
@@ -117,6 +117,7 @@ exports.registerEnter = function (req, res) {
             name: name,
             password: password
         };
+        console.log("여기2");
         console.log(query);
 
         // id 중복값이 있는지 확인하자.
@@ -131,7 +132,7 @@ exports.registerEnter = function (req, res) {
                 if (numberOfResult == 0) {
                     //데이터베이스 기재 및 비밀번호 변경
                     conn.query(
-                        'INSERT INTO user SET ?', query, function (err, result) {
+                        'INSERT INTO user SET ?', query, function (err) {
                             if (err) {
                                 throw err;
                             }
@@ -170,16 +171,17 @@ exports.main = function (req, res) {
                 callback(err, null);
             }
             else {
+                //for문 구현 필수
                 callback(null, row[0]);
             }
         });
-    };
+    }
 
     createCard(function (err, row) {
-        if(err) throw err;
-        if(row.length == 0) {
+        if (err) throw err;
+        if (row.length == 0) {
             //완전히 처음 사용할 때, 카드가 없을경우 이렇게 처리해줘야함.
-            res.render('main', {userName: req.session.userName, userFindCount : req.session.find_count});
+            res.render('main', {userName: req.session.userName, userFindCount: req.session.find_count});
         }
         else {
             cardUserName = row.userName;
@@ -200,7 +202,7 @@ exports.searchBook = function (req, res) {
         bookStatus = row;
         res.contentType('json');
         res.send(bookStatus);
-    };
+    }
 
     conn.query('SELECT SUBSTRING_INDEX("' + searchQuery + '",\' \' , 1) AS frontQ', function (err, row) {
         if (err) {
@@ -216,9 +218,10 @@ exports.searchBook = function (req, res) {
                 throw err;
             }
             receiveQuery(row[0]);
+            console.log("여기1");
             console.log(row[0]);
         });
-    };
+    }
 };
 
 exports.writeCard = function (req, res) {
@@ -228,47 +231,46 @@ exports.writeCard = function (req, res) {
     var bookLocation;
     var bookNum;
 
-    function bookConfigure() {
-        conn.query('SELECT bookNum, location FROM book WHERE title = "' + bookTitle + '"', function (err, row) {
+    function writeCard(callback) {
+        //receive book info
+        conn.query('SELECT bookNum, location FROM book WHERE title = "' + bookTitle + '"', function (err, result) {
             if (err) {
-                throw err;
+                callback(err);
+                return;
             }
-            writeBookVar(row[0]);
+
+            //writing book info to create card. (bookTitle is unique key, so i should use result's first order value)
+            bookLocation = result[0].location;
+            bookNum = result[0].bookNum;
+
+            //user configuration. (also userId is unique key)
+            conn.query('SELECT userNum FROM user WHERE userId = "' + userId + '"', function (err, result) {
+                if (err) {
+                    callback(err);
+                    return;
+                }
+                userNum = result[0].userNum;
+                callback(null);
+            });
         });
-    };
+    }
 
-    function writeBookVar(row) {
-        console.log(row);
-        bookLocation = row.location;
-        bookNum = row.bookNum;
-        userConfigure();
-    };
+    writeCard(function (err) {
+        //receive callback variables
+        if (err) {
+            console.log("error while writing new Card");
+            throw err;
+        }
 
-    function userConfigure() {
-        conn.query('SELECT userNum FROM user WHERE userId = "' + userId + '"', function (err, row) {
-            if (err) {
-                throw err;
-            }
-            writeUserVar(row[0]);
-        });
-    };
-
-    function writeUserVar(row) {
-        userNum = row.userNum;
-        writeRelation();
-    };
-
-    function writeRelation() {
+        //create card
         conn.query('INSERT INTO user_has_book (userNum, bookNum) VALUES ("'
             + userNum + '", "' + bookNum + '")', function (err) {
             if (err) {
                 throw err;
             }
-            console.log("finish");
+            console.log("successfully write new Card");
         });
-    };
-
-    bookConfigure();
+    });
 
     res.redirect('/');
 };
