@@ -117,8 +117,6 @@ exports.registerEnter = function (req, res) {
             name: name,
             password: password
         };
-        console.log("여기2");
-        console.log(query);
 
         // id 중복값이 있는지 확인하자.
         conn.query(
@@ -128,19 +126,11 @@ exports.registerEnter = function (req, res) {
                 }
                 var numberOfResult = row.length;
 
-                console.log("result" + numberOfResult);
                 if (numberOfResult == 0) {
                     //데이터베이스 기재 및 비밀번호 변경
                     conn.query(
-                        'INSERT INTO user SET ?', query, function (err) {
-                            if (err) {
-                                throw err;
-                            }
-                            res.json({status: "SUCCESS"});
-                        });
-                    conn.query(
-                        'UPDATE user SET password = PASSWORD("' +
-                            password + '") WHERE userId = "' + userId + '"', function (err) {
+                        'INSERT INTO user (userId, name, password) VALUES ("'
+                            + userId + '", "' + name + '", PASSWORD("' + password + '"))', function (err) {
                             if (err) {
                                 throw err;
                             }
