@@ -48,6 +48,9 @@ app.post('/registerComplete', routes.registerEnter);
 //main
 app.get('/:id', routes.main);
 
+//admin
+app.get('/admin', routes.start);
+
 //write
 app.post('/searchBookForRequest', routes.searchBook);
 app.post('/writeComplete', routes.writeCard);

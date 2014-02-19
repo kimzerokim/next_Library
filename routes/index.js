@@ -18,6 +18,7 @@ var extractConnection = (function () {
         returnInfo: returnInfo
     };
 }());
+
 var conn = mysql.createConnection(extractConnection.returnInfo());
 
 //conn.connect(); // 사실 쿼리날릴때 자동으로 연결됨.
@@ -27,14 +28,22 @@ var conn = mysql.createConnection(extractConnection.returnInfo());
 //start Route
 
 exports.start = function (req, res) {
+    //isAdmin?
+    //redirect to adminpage
+    if (req.session.isAdmin) {
+        res.redirect('/admin');
+    }
+
     //loginStatus on
     if (req.session.loginStatus) {
         res.redirect('/' + req.session.userId);
     }
+
     //loginStatus off
     else {
-        /*     	res.render('error', {errorMsg : "오랜만이네"}); */
+        /* res.render('error', {errorMsg : "오랜만이네"}); */
         console.log("로그아웃상태입니다.");
+        req.session.isAdmin = false;
         req.session.loginStatus = false;
         res.render('start');
     }
@@ -48,15 +57,41 @@ exports.login = function (req, res) {
     res.render('login');
 };
 
+var adminInfo = (function () {
+    var info = {
+        userId : 'admin',
+        password : 'admin'
+    };
+
+    var returnInfo = function() {
+        return info;
+    };
+
+    return {
+        returnInfo : returnInfo
+    };
+}());
+
 exports.loginEnter = function (req, res) {
     var userId = req.body.userId;
     var password = req.body.password;
 
+    function configureAdmin() {
+        if (userId === adminInfo.returnInfo().userId && password === adminInfo.returnInfo().password) {
+            req.session.isAdmin = true;
+            setSessionEndRedirect();
+        }
+    }
+
     function setSessionEndRedirect() {
+        req.session.isAdmin = false;
         req.session.loginStatus = true;
         req.session.userId = userId;
         res.redirect('/');
     }
+
+    //admin configure
+    configureAdmin();
 
     conn.query(
         'SELECT userId, password from user WHERE userId = "' + userId + '"', function (err, row) {
@@ -112,11 +147,6 @@ exports.registerEnter = function (req, res) {
     var reEnteredPassword = req.body.rePassword;
 
     if (password === reEnteredPassword) {
-        var query = {
-            userId: userId,
-            name: name,
-            password: password
-        };
 
         // id 중복값이 있는지 확인하자.
         conn.query(
