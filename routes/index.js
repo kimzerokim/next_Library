@@ -21,12 +21,7 @@ var extractConnection = (function () {
 
 var conn = mysql.createConnection(extractConnection.returnInfo());
 
-//conn.connect(); // 사실 쿼리날릴때 자동으로 연결됨.
-//conn.end(); // 이걸로 커넥션을 끊는다. -> 없는게 가장 편함. 여기서 오류가 많이 발생.
-
-
 //start Route
-
 exports.start = function (req, res) {
     //isAdmin?
     //redirect to adminpage
@@ -59,16 +54,16 @@ exports.login = function (req, res) {
 
 var adminInfo = (function () {
     var info = {
-        userId : 'admin',
-        password : 'admin'
+        userId: 'admin',
+        password: 'admin'
     };
 
-    var returnInfo = function() {
+    var returnInfo = function () {
         return info;
     };
 
     return {
-        returnInfo : returnInfo
+        returnInfo: returnInfo
     };
 }());
 
@@ -93,6 +88,7 @@ exports.loginEnter = function (req, res) {
     //admin configure
     configureAdmin();
 
+    //need to making asynchronous process
     conn.query(
         'SELECT userId, password from user WHERE userId = "' + userId + '"', function (err, row) {
             if (err) {
@@ -214,33 +210,33 @@ exports.main = function (req, res) {
 };
 
 //write
+//need create full text search function
 exports.searchBook = function (req, res) {
     var searchQuery = req.body.bookTitle;
     var bookStatus = {};
+
+    //full text search
+    function bookSearch(callback) {
+        conn.query('SELECT location, title, status FROM book WHERE MATCH(title) AGAINST("'
+            + searchQuery + '") LIMIT 5', function (err, result){
+            if (err) {
+                callback (err, null);
+                return;
+            }
+            callback (null, result);
+        })
+    }
+
+    bookSearch(function (err, result) {
+        if (err) throw err;
+        receiveQuery(result[0]);
+    });
 
     function receiveQuery(row) {
         bookStatus = row;
         res.contentType('json');
         res.send(bookStatus);
-    }
-
-    conn.query('SELECT SUBSTRING_INDEX("' + searchQuery + '",\' \' , 1) AS frontQ', function (err, row) {
-        if (err) {
-            throw err;
-        }
-        var frontQ = row[0].frontQ;
-        frontQuerySend(frontQ);
-    });
-
-    function frontQuerySend(frontQ) {
-        conn.query('SELECT location, title FROM book WHERE title LIKE "%' + frontQ + '%"', function (err, row) {
-            if (err) {
-                throw err;
-            }
-            receiveQuery(row[0]);
-            console.log("여기1");
-            console.log(row[0]);
-        });
+        console.log(bookStatus);
     }
 };
 
