@@ -177,9 +177,9 @@ exports.registerEnter = function (req, res) {
 exports.main = function (req, res) {
     //send query to create cards at main page
     function createCard(callback) {
-        conn.query('SELECT user.name userName, book.title title, book.location location, rel.status status ' +
-            'FROM user_has_book rel join book on rel.bookNum = book.bookNum ' +
-            'join user on user.userNum = rel.userNum ORDER BY rel.addOrder DESC', function (err, result) {
+        conn.query('SELECT user.name userName, book.title title, book.location location, rel.status status, ' +
+            'rel.cardNum cardNum FROM user_has_book rel join book on rel.bookNum = book.bookNum ' +
+            'join user on user.userNum = rel.userNum ORDER BY rel.cardNum DESC', function (err, result) {
             if (err) {
                 callback(err, null);
             }

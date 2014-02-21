@@ -77,29 +77,38 @@ html
                         | 이 책들이 라이브러리에 가고 싶어해요
                     .line
                 each card in cards
-                    .bookCard
-                        .topLineUpper
-                        .topLineBottom
-                        .bookCardTitle
-                            | Book Card
-                        .findingMessage
-                            | #{card.userName} 님이 찾습니다!
-                        .bookTitle
-                            | #{card.title}
-                        .bookNumber
-                            | 라이브러리 넘버 : #{card.location}
-                        .returnCompleteButton(onclick='location.href=\'\';')
-                            | 반납완료
+                    if (card.status === 0)
+                        .bookCard
+                            .topLineUpper
+                            .topLineBottom
+                            .bookCardTitle
+                                | Book Card
+                            .findingMessage
+                                | #{card.userName} 님이 찾습니다!
+                            .bookTitle
+                                | #{card.title}
+                            .bookNumber
+                                | 라이브러리 넘버 : #{card.location}
+                            .returnCompleteButton(onclick='location.href=\'/changeCardStatus/#{card.cardNum}\';')
+                                | 반납완료                    
             #completeList
                 .listTitle
                     .title
                         | 이 책들은 라이브러리에 도착했어요!
                     .line
-                .bookCard
-                    .topLineUpper
-                    .topLineBottom
-                    .bookCardTitle
-                        | Book Card
+                each card in cards
+                    if (card.status === 1)
+                        .bookCard
+                            .topLineUpper
+                            .topLineBottom
+                            .bookCardTitle
+                                | Book Card
+                            .findingMessage
+                                | #{card.userName} 님이 찾습니다!
+                            .bookTitle
+                                | #{card.title}
+                            .bookNumber
+                                | 라이브러리 넘버 : #{card.location}         
         footer
             | 2014   YoungKim   @nhnnext.org
 script(src='/javascripts/main.js')

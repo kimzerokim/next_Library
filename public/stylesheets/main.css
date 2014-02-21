@@ -450,6 +450,38 @@ nav #home {
 	font-family : 'Nanum Gothic' , sans-serif;
 }
 
+#contentsView #completeList .bookCard .findingMessage {
+	width : 400px;
+	height : 34px;
+	line-height: 26px;
+	font-family: 'Nanum Gothic' , sans-serif;
+	font-size : 18px;
+	margin : 20px 0px 0px 20px;
+	color : #50588a;
+}
+
+#contentsView #completeList .bookCard .bookTitle {
+	width : 450px;
+	min-height : 40px;	
+	word-wrap : break-word;
+	line-height : 30px;
+	font-family : 'Nanum Gothic' , sans-serif;
+	font-size : 24px;
+	margin : 4px 0px 0px 20px;
+	color : #50588a;
+}
+
+#contentsView #completeList .bookCard .bookNumber {
+	display : inline-block;
+	width : 200px;
+	height : 46px;
+	line-height : 32px;
+	margin : 10px 0px 0px 22px;
+	font-family : 'Nanum Gothic' , sans-serif;
+	font-size : 15px; 
+	color : #50588a;
+}
+
 footer {
 	width : 100%;
 	height: 30px;

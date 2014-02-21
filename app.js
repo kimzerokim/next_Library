@@ -54,6 +54,7 @@ app.get('/admin', routes.start);
 //write
 app.post('/searchBookForRequest', routes.searchBook);
 app.post('/writeComplete', routes.writeCard);
+//app.post('/changeCardStatus/:cardNum', routes.changeCard);
 
 
 //create Node Server
