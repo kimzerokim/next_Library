@@ -287,3 +287,13 @@ exports.writeCard = function (req, res) {
 
     res.redirect('/');
 };
+
+//card return button action
+exports.changeCard = function (req, res) {
+    var cardNum = req.params.cardNum;
+    conn.query('UPDATE user_has_book SET status = 1 WHERE cardNum = "' + cardNum + '"', function (err){
+       if (err) throw err;
+       console.log("cardNum" + cardNum + "successfully changed");
+       res.redirect('/');
+    });
+};
