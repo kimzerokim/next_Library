@@ -177,8 +177,8 @@ exports.registerEnter = function (req, res) {
 exports.main = function (req, res) {
     //send query to create cards at main page
     function createCard(callback) {
-        conn.query('SELECT user.name userName, book.title title, book.location location, rel.status status, ' +
-            'rel.cardNum cardNum FROM user_has_book rel join book on rel.bookNum = book.bookNum ' +
+        conn.query('SELECT user.name userName, user.find_count find_count, book.title title, book.location location, ' +
+            'rel.status status, rel.cardNum cardNum FROM user_has_book rel join book on rel.bookNum = book.bookNum ' +
             'join user on user.userNum = rel.userNum ORDER BY rel.cardNum DESC', function (err, result) {
             if (err) {
                 callback(err, null);
@@ -201,7 +201,7 @@ exports.main = function (req, res) {
         else {
             // card 목록을 반환한다.
             console.log(result);
-            res.render('main', {userName: req.session.userName, userFindCount: req.session.find_count, cards: result});
+            res.render('main', {userName: req.session.userName, userFindCount: result[0].find_count, cards: result});
         }
     });
 };
@@ -257,13 +257,21 @@ exports.writeCard = function (req, res) {
             bookNum = result[0].bookNum;
 
             //user configuration. (also userId is unique key)
-            conn.query('SELECT userNum FROM user WHERE userId = "' + userId + '"', function (err, result) {
+            conn.query('SELECT userNum, find_count FROM user WHERE userId = "' + userId + '"', function (err, result) {
                 if (err) {
                     callback(err);
                     return;
                 }
+
                 userNum = result[0].userNum;
-                callback(null);
+
+                conn.query('UPDATE user SET find_count = find_count+1 WHERE userNum = "' + userNum + '"', function (err) {
+                    if (err) {
+                        callback(err);
+                        return;
+                    }
+                    callback(null);
+                });
             });
         });
     }
@@ -291,9 +299,10 @@ exports.writeCard = function (req, res) {
 //card return button action
 exports.changeCard = function (req, res) {
     var cardNum = req.params.cardNum;
-    conn.query('UPDATE user_has_book SET status = 1 WHERE cardNum = "' + cardNum + '"', function (err){
-       if (err) throw err;
-       console.log("cardNum" + cardNum + "successfully changed");
-       res.redirect('/');
+
+    conn.query('UPDATE user_has_book SET status = 1 WHERE cardNum = "' + cardNum + '"', function (err) {
+        if (err) throw err;
+        console.log("cardNum" + cardNum + "successfully changed");
+        res.redirect('/');
     });
 };
