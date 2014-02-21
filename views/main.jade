@@ -32,6 +32,13 @@ html
                             td#table2(style = 'border-right: 1px solid #a5abb2;')
                                 | 이 책 제목
                             td#table3
+                                | 가출중                        
+                        tr
+                            td#table1(style = 'border-right: 1px solid #a5abb2;')
+                                | FG-3
+                            td#table2(style = 'border-right: 1px solid #a5abb2;')
+                                | 이 책 제목
+                            td#table3
                                 | 가출중
             form#searchForm(action = '/writeComplete', method = 'post')
                 input#writeTitleInput(type = 'hidden', name = 'bookSendTitle')
@@ -69,19 +76,20 @@ html
                     .title
                         | 이 책들이 라이브러리에 가고 싶어해요
                     .line
-                .bookCard
-                    .topLineUpper
-                    .topLineBottom
-                    .bookCardTitle
-                        | Book Card
-                    .findingMessage
-                        | #{cardUserName} 님이 찾습니다!
-                    .bookTitle
-                        | #{cardBookTitle}
-                    .bookNumber
-                        | 라이브러리 넘버 : #{cardBookLocation}
-                    .returnCompleteButton(onclick='location.href=\'\';')
-                        | 반납완료
+                each card in cards
+                    .bookCard
+                        .topLineUpper
+                        .topLineBottom
+                        .bookCardTitle
+                            | Book Card
+                        .findingMessage
+                            | #{card.userName} 님이 찾습니다!
+                        .bookTitle
+                            | #{card.title}
+                        .bookNumber
+                            | 라이브러리 넘버 : #{card.location}
+                        .returnCompleteButton(onclick='location.href=\'\';')
+                            | 반납완료
             #completeList
                 .listTitle
                     .title

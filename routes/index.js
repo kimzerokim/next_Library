@@ -170,47 +170,43 @@ exports.registerEnter = function (req, res) {
             });
     }
     else {
-        res.render('error', {errorMsg: '비밀번호 확인이 틀렸어용!!!'});
+        res.render('error', {errorMsg: '비밀번호 재확인란이 틀렸어용!!!'});
     }
 };
 
 exports.main = function (req, res) {
-    var cardUserName;
-    var cardBookTitle;
-    var cardBookLocation;
-
+    //send query to create cards at main page
     function createCard(callback) {
-        conn.query('SELECT user.name userName, book.title title, book.location location ' +
+        conn.query('SELECT user.name userName, book.title title, book.location location, rel.status status ' +
             'FROM user_has_book rel join book on rel.bookNum = book.bookNum ' +
-            'join user on user.userNum = rel.userNum', function (err, row) {
+            'join user on user.userNum = rel.userNum ORDER BY rel.addOrder DESC', function (err, result) {
             if (err) {
                 callback(err, null);
             }
             else {
                 //for문 구현 필수
-                callback(null, row[0]);
+                callback(null, result);
             }
         });
     }
 
-    createCard(function (err, row) {
-        if (err) throw err;
-        if (row.length == 0) {
+    createCard(function (err, result) {
+        if (err) {
+            throw err;
+        }
+        if (result.length == 0) {
             //완전히 처음 사용할 때, 카드가 없을경우 이렇게 처리해줘야함.
             res.render('main', {userName: req.session.userName, userFindCount: req.session.find_count});
         }
         else {
-            cardUserName = row.userName;
-            cardBookTitle = row.title;
-            cardBookLocation = row.location;
-            res.render('main', {userName: req.session.userName, userFindCount: req.session.find_count,
-                cardUserName: cardUserName, cardBookTitle: cardBookTitle, cardBookLocation: cardBookLocation});
+            // card 목록을 반환한다.
+            console.log(result);
+            res.render('main', {userName: req.session.userName, userFindCount: req.session.find_count, cards: result});
         }
     });
 };
 
 //write
-//need create full text search function
 exports.searchBook = function (req, res) {
     var searchQuery = req.body.bookTitle;
     var bookStatus = {};
@@ -218,22 +214,23 @@ exports.searchBook = function (req, res) {
     //full text search
     function bookSearch(callback) {
         conn.query('SELECT location, title, status FROM book WHERE MATCH(title) AGAINST("'
-            + searchQuery + '") LIMIT 5', function (err, result){
+            + searchQuery + '") LIMIT 5', function (err, result) {
             if (err) {
-                callback (err, null);
+                callback(err, null);
                 return;
             }
-            callback (null, result);
+            callback(null, result);
         })
     }
 
+    //need to manage large rows
     bookSearch(function (err, result) {
         if (err) throw err;
         receiveQuery(result[0]);
     });
 
-    function receiveQuery(row) {
-        bookStatus = row;
+    function receiveQuery(result) {
+        bookStatus = result;
         res.contentType('json');
         res.send(bookStatus);
         console.log(bookStatus);
