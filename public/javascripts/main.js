@@ -73,7 +73,27 @@ var aside = {
             request.send(oFormData);
             //ajax 통신이 끝난 후 폼의 값을 초기화 해준다.
             eleForm[0].value = "";
-	}
+        }
+        
+        /*
+bookSearchRequest : function(e) {
+            e.preventDefault();
+            var eleForm = e.currentTarget.form;
+            var oFormData = new FormData(eleForm);
+            
+            var url = "/searchBookForRequest";
+            var request = new XMLHttpRequest();
+            
+            request.open("POST", url, true);
+            request.onreadystatechange = function() {
+                if (request.readState == 4 && request.status == 200) {
+                    var obj = JSON.parse(request.responseText);
+                    var resultList = document.getElementById("searchResult");
+                    resultList.style.display = "block";
+                }
+            }
+        }
+*/
 	},
 	
 	userInfoEvent : {	
