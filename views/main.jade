@@ -26,7 +26,7 @@ html
                             col.c1
                             col.c2
                             col.c3             		
-                        tr
+                        tr(style = 'border-bottom : 1px solid')
                             td#table1(style = 'border-right: 1px solid #a5abb2;')
                                 | FG-4
                             td#table2(style = 'border-right: 1px solid #a5abb2;')
@@ -34,11 +34,11 @@ html
                             td#table3
                                 | 가출중                        
                         tr
-                            td#table1(style = 'border-right: 1px solid #a5abb2;')
+                            td#table1(style = 'border-right: 1px solid #a5abb2; border-top: 1px solid #a5abb2;')
                                 | FG-3
-                            td#table2(style = 'border-right: 1px solid #a5abb2;')
+                            td#table2(style = 'border-right: 1px solid #a5abb2; border-top: 1px solid #a5abb2;')
                                 | 이 책 제목
-                            td#table3
+                            td#table3(style = 'border-top: 1px solid #a5abb2;')
                                 | 가출중
             form#searchForm(action = '/writeComplete', method = 'post')
                 input#writeTitleInput(type = 'hidden', name = 'bookSendTitle')

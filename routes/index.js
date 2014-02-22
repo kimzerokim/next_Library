@@ -184,7 +184,6 @@ exports.main = function (req, res) {
                 callback(err, null);
             }
             else {
-                //for문 구현 필수
                 callback(null, result);
             }
         });
@@ -195,12 +194,11 @@ exports.main = function (req, res) {
             throw err;
         }
         if (result.length == 0) {
-            //완전히 처음 사용할 때, 카드가 없을경우 이렇게 처리해줘야함.
+            //for first use. (no cards are exist)
             res.render('main', {userName: req.session.userName, userFindCount: req.session.find_count});
         }
         else {
-            // card 목록을 반환한다.
-            console.log(result);
+            //return card list
             res.render('main', {userName: req.session.userName, userFindCount: result[0].find_count, cards: result});
         }
     });
@@ -233,7 +231,6 @@ exports.searchBook = function (req, res) {
         bookStatus = result;
         res.contentType('json');
         res.send(bookStatus);
-        console.log(bookStatus);
     }
 };
 
