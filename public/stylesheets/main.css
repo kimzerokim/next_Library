@@ -1,11 +1,11 @@
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
 /* reset align */
 body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select{margin:0;padding:0}
 body,input,textarea,select,button,table{font-family:'�뗭�',Dotum,AppleGothic,sans-serif;font-size:1em}
 img,fieldset{border:0}
 ul,ol{list-style:none}
 em,address{font-style:normal} a{text-decoration:none} a:hover,a:active,a:focus{text-decoration:underline}
-
-@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css); 
 
 body {
 	background-color: #dbd8d8;
@@ -17,7 +17,7 @@ nav {
 	width: 100%;
 	background-color: #46485b;
 	height: 40px;
-	box-shadow: 0px 2px 7px #4e5762;
+	box-shadow: 0 2px 7px #4e5762;
 	z-index: 3;
 	text-align: center;
 	font-family: 'Lato', 'Nanum Gothic' , sans-serif;
@@ -39,7 +39,7 @@ nav #home {
 	width : 640px;
 	min-height: 220px;
 	left : 50%;
-	margin : 40px 0px 0px -321px;
+	margin : 40px 0 0 -321px;
 	background-color : #eeeeee;
 	box-shadow: 4px 4px 7px #5e646c;
 }
@@ -52,7 +52,7 @@ nav #home {
 	font-size : 25px;
 	letter-spacing: 3px;
 	text-align: center;
-	margin : 16px 0px 0px 240px;
+	margin : 16px 0 0 240px;
 	color : #4c5561;
 }
 
@@ -60,7 +60,7 @@ nav #home {
 	width : 26px;
 	height : 26px;
 	float : right;
-	margin : 17px 17px 0px 0px;
+	margin : 17px 17px 0 0;
 	cursor : pointer;
 }
 
@@ -68,7 +68,7 @@ nav #home {
 	width : 580px;
 	min-height : 72px;
 	background-color: #ffffff;
-	margin: 64px auto 0px auto;
+	margin: 64px auto 0 auto;
 	box-shadow: 1px 2px 7px #87919d;
 }
 
@@ -76,7 +76,7 @@ nav #home {
 	height: 25px;
 	border: 1px solid #a5abb2;
 	border-radius: 2px;
-	margin: 0px 20px 0px 144px;
+	margin: 0 20px 0 144px;
 	font-size: 14px;
 }
 
@@ -93,7 +93,7 @@ nav #home {
 	cursor : pointer;
 	font-size: 14px;
 	font-family : 'Nanum Gothic' , sans-serif;
-	border: 0px;
+    border : 0;
 }
 
 #writePopUp #searchResult {
@@ -106,44 +106,43 @@ nav #home {
 
 #writePopUp #searchResult li {
     height : 30px;
-    margin : 0px 0px 16px 0px;
-    border : 1px solid #f0e3e3;
+    margin : -2px 0 12px 0;
+    border : 1px solid #f4d5d5;
     background-color: #eeeeee;
     text-align: center;
-    line-height: 20px;
+    line-height: 30px;
     vertical-align: middle;
     font-size: 16px;
 	font-family : 'Nanum Gothic' , sans-serif;
     color : #857f7f;
-    #c5c6d3
 }
 
 #writePopUp #searchResult li .resultCheckBox {
     width: 30px;
     height: 30px;
     float : left;
-    border : 1px solid #f0e3e3;
+    border : 1px solid #c5c6d3;
 }
 
 #writePopUp #searchResult li .bookLocation {
     width: 80px;
     height: 30px;
     float : left;
-    border : 1px solid #f0e3e3;
+    border : 1px solid #f4d5d5;
 }
 
 #writePopUp #searchResult li .bookTitle {
     width: 280px;
     height: 30px;
     float : left;
-    border : 1px solid #f0e3e3;
+    border : 1px solid #f4d5d5;
 }
 
 #writePopUp #searchResult li .bookStatus {
     width: 80px;
     height: 30px;
     float : left;
-    border : 1px solid #f0e3e3;
+    border : 1px solid #f4d5d5;
 }
 
 #writePopUp #searchForm {
@@ -160,13 +159,13 @@ nav #home {
 	text-align: center;
 	vertical-align: middle;
 	left: 50%;
-	margin : 20px 0px 10px -46px;
+	margin : 20px 0 10px -46px;
 	background-color: #424242;
 	color: #e5ecf3;
 	cursor : pointer;
 	font-size: 14px;
 	font-family : 'Nanum Gothic' , sans-serif;
-	border: 0px;
+    border : 0;
 }
 
 #userInfoPopUp {
@@ -176,7 +175,7 @@ nav #home {
 	width : 400px;
 	height: 260px;
 	left : 50%;
-	margin : 40px 0px 0px -201px; 
+	margin : 40px 0 0 -201px;
 	/* 	매우 재미있는 방법! fixed에서 자주 사용할 것 같다. (처음부터 이렇게 짜도 됨~) */
 	background-color : #eeeeee;
 	box-shadow: 4px 4px 7px #5e646c;
@@ -190,7 +189,7 @@ nav #home {
 	font-size : 29px;
 	letter-spacing: 3px;
 	text-align: center;
-	margin : 17px 0px 0px 120px;
+	margin : 17px 0 0 120px;
 	color : #4c5561;
 }
 
@@ -198,7 +197,7 @@ nav #home {
 	width : 26px;
 	height : 26px;
 	float : right;
-	margin : 17px 12px 0px 0px;
+	margin : 17px 12px 0 0;
 	cursor : pointer;
 }
 
@@ -206,7 +205,7 @@ nav #home {
 	width : 320px;
 	height : 140px;
 	background-color: #ffffff;
-	margin: 74px auto 0px auto;
+	margin: 74px auto 0 auto;
 	box-shadow: 1px 2px 7px #87919d;
 }
 
@@ -222,7 +221,7 @@ nav #home {
 	vertical-align: middle;
 	letter-spacing: 3px;
 	color : #4c5561;
-	margin : 00px 0px 0px 0px;
+	margin : 00px 0 0 0;
 }
 
 #userInfoPopUp #record {
@@ -233,7 +232,6 @@ nav #home {
 	font-size : 18px;
 	letter-spacing: 2px;
 	color : #4c5561;
-	margin : 0px 0px 0px 0px;
 }
 
 #settingPopUp {
@@ -243,7 +241,7 @@ nav #home {
 	width : 260px;
 	height: 160px;
 	left : 50%;
-	margin : 40px 0px 0px -131px; 
+	margin : 40px 0 0 -131px;
 	/* 	매우 재미있는 방법! fixed에서 자주 사용할 것 같다. (처음부터 이렇게 짜도 됨~) */
 	background-color : #eeeeee;
 	box-shadow: 4px 4px 7px #5e646c;
@@ -253,12 +251,11 @@ nav #home {
 	width : 26px;
 	height : 26px;
 	float : right;
-	margin : 12px 12px 0px 0px;
+	margin : 12px 12px 0 0;
 	cursor : pointer;
 }
 
 #settingPopUp #logoutButton {
-	display : fixed;
 	width : 100px;
 	height : 42px;
 	float : right;
@@ -266,7 +263,7 @@ nav #home {
 	line-height: 42px;
 	text-align: center;
 	vertical-align: middle;
-	margin: 58px 42px 0px auto;
+	margin: 58px 42px 0 auto;
 	background-color: #424242;
 	color: #e5ecf3;
 	cursor : pointer;
@@ -277,7 +274,7 @@ nav #home {
 #contentsView {
 	width : 700px;
 	min-height: 400px;
-	margin : 70px auto 0px auto;
+	margin : 70px auto 0 auto;
 	-webkit-filter: blur(0px);
     -moz-filter: blur(0px);
     -o-filter: blur(0px);
@@ -291,32 +288,31 @@ nav #home {
 	float : left;
 	width : 50px;
 	height : 300px;
-	margin : 34px auto 0px 34px;
+	margin : 34px auto 0 34px;
 }
 
 #contentsView aside #writeIcon {
 	width: 47px;
 	height: 47px;
-	margin : 0px 0px 5px 1px;
+	margin : 0 0 5px 1px;
 	cursor : pointer;
 }
 
 #contentsView aside #userIcon {
 	width: 46px;
 	height: 41px;
-	margin : 1px 0px 4px 1px;
+	margin : 1px 0 4px 1px;
 	cursor : pointer;
 }
 
 #contentsView aside #settingIcon {
 	width: 47px;
 	height: 47px;
-	margin : 4px 0px 0px 1px;
+	margin : 4px 0 0 1px;
 	cursor : pointer;
 }
 
 #contentsView aside #toWatingListButton {
-	display : fixed;
 	width : 40px;
 	height : 22px;
 	float : right;
@@ -324,7 +320,7 @@ nav #home {
 	line-height: 22px;
 	text-align: center;
 	vertical-align: middle;
-	margin: 10px 5px 0px 1px;
+	margin: 10px 5px 0 1px;
 	background-color: #4d4d4d;
 	color: #e5ecf3;
 	cursor : pointer;
@@ -333,7 +329,6 @@ nav #home {
 }
 
 #contentsView aside #toCompleteListButton {
-	display : fixed;
 	width : 40px;
 	height : 22px;
 	float : right;
@@ -341,7 +336,7 @@ nav #home {
 	line-height: 22px;
 	text-align: center;
 	vertical-align: middle;
-	margin: 6px 5px 0px 1px;
+	margin: 6px 5px 0 1px;
 	background-color: #4d4d4d;
 	color: #e5ecf3;
 	cursor : pointer;
@@ -353,26 +348,26 @@ nav #home {
 	width : 540px;
 	height: auto;
 	float : right;
-	margin : 0px 70px 0px 0px;
+	margin : 0 70px 0 0;
 }
 
 #contentsView #completeList {
 	width : 540px;
 	height: auto;
 	float : right;
-	margin : 0px 70px 0px 0px;
+	margin : 0 70px 0 0;
 }
 
 #contentsView .listTitle {
 	width : 540px;
 	height : 40px;
-	margin : 0px auto 16px auto;
+	margin : 0 auto 16px auto;
 }
 
 #contentsView .listTitle .title {
 	width : 560px;
 	height : 30px;
-	margin : 0px 0px 0px 24px;
+	margin : 0 0 0 24px;
 	font-family: 'Nanum Gothic' , sans-serif;
 	font-size : 20px;
 	color : #424563;
@@ -382,13 +377,13 @@ nav #home {
 	width : 494px;
 	height : 3px;
 	border-bottom: 2px dotted #aa2c41;
-	margin : 0px auto 0px auto;
+	margin : 0 auto 0 auto;
 }
 
 #contentsView .bookCard {
 	width : 500px;
 	min-height: 170px;
-	margin : 0px auto 34px auto;
+	margin : 0 auto 34px auto;
 	background-color : #eeeeee;
 	border-radius: 10px;
 	box-shadow: 1px 2px 7px #87919d;
@@ -405,13 +400,13 @@ nav #home {
 	width : 500px;
 	height: 20px;
 	background-color : #424563;
-	margin : -8px auto 0px auto;
+	margin : -8px auto 0 auto;
 }
 
 #contentsView .bookCard .bookCardTitle {
 	width : 500px;
 	height: 20px;
-	margin : -26px 0px 0px 20px;
+	margin : -26px 0 0 20px;
 	z-index: 2;
 	font-family: 'Lato' , 'Nanum Gothic' , sans-serif;
 	font-weight: 100;
@@ -425,7 +420,7 @@ nav #home {
 	line-height: 26px;
 	font-family: 'Nanum Gothic' , sans-serif;
 	font-size : 18px;
-	margin : 20px 0px 0px 20px;
+	margin : 20px 0 0 20px;
 	color : #50588a;
 }
 
@@ -436,7 +431,7 @@ nav #home {
 	line-height : 30px;
 	font-family : 'Nanum Gothic' , sans-serif;
 	font-size : 24px;
-	margin : 4px 0px 0px 20px;
+	margin : 4px 0 0 20px;
 	color : #50588a;
 }
 
@@ -445,7 +440,7 @@ nav #home {
 	width : 200px;
 	height : 46px;
 	line-height : 32px;
-	margin : 10px 0px 0px 22px;
+	margin : 10px 0 0 22px;
 	font-family : 'Nanum Gothic' , sans-serif;
 	font-size : 15px; 
 	color : #50588a;
@@ -460,7 +455,7 @@ nav #home {
 	line-height: 29px;
 	text-align: center;
 	vertical-align: middle;
-	margin: 12px 30px 0px auto;
+	margin: 12px 30px 0 auto;
 	background-color: #424563;
 	color: #e5ecf3;
 	cursor : pointer;
@@ -474,7 +469,7 @@ nav #home {
 	line-height: 26px;
 	font-family: 'Nanum Gothic' , sans-serif;
 	font-size : 18px;
-	margin : 20px 0px 0px 20px;
+	margin : 20px 0 0 20px;
 	color : #50588a;
 }
 
@@ -485,7 +480,7 @@ nav #home {
 	line-height : 30px;
 	font-family : 'Nanum Gothic' , sans-serif;
 	font-size : 24px;
-	margin : 4px 0px 0px 20px;
+	margin : 4px 0 0 20px;
 	color : #50588a;
 }
 
@@ -494,7 +489,7 @@ nav #home {
 	width : 200px;
 	height : 46px;
 	line-height : 32px;
-	margin : 10px 0px 0px 22px;
+	margin : 10px 0 0 22px;
 	font-family : 'Nanum Gothic' , sans-serif;
 	font-size : 15px; 
 	color : #50588a;
@@ -504,7 +499,7 @@ footer {
 	width : 100%;
 	height: 30px;
 	text-align: center;
-	margin: -10px auto 0px auto;
+	margin: -10px auto 0 auto;
 	font-family: 'Lato', 'Nanum Gothic' , sans-serif;
 	font-weight: 300;
 	font-size: 16px;

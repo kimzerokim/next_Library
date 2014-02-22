@@ -68,7 +68,7 @@ var aside = {
                     table2.innerHTML = obj.title;
                     var writeTitleInput = document.getElementById("writeTitleInput");
                     writeTitleInput.value = obj.title;           
-                };
+                }
             };            
             request.send(oFormData);
             //ajax 통신이 끝난 후 폼의 값을 초기화 해준다.
@@ -76,7 +76,7 @@ var aside = {
         }
         
         /*
-bookSearchRequest : function(e) {
+bbookSearchRequest : function(e) {
             e.preventDefault();
             var eleForm = e.currentTarget.form;
             var oFormData = new FormData(eleForm);
