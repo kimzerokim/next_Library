@@ -21,25 +21,20 @@ html
                     button#searchButton(type='submit')
                         | 검색
                 #searchResult
-                    table#searchTable
-                        colgroup
-                            col.c1
-                            col.c2
-                            col.c3             		
-                        tr(style = 'border-bottom : 1px solid')
-                            td#table1(style = 'border-right: 1px solid #a5abb2;')
-                                | FG-4
-                            td#table2(style = 'border-right: 1px solid #a5abb2;')
-                                | 이 책 제목
-                            td#table3
-                                | 가출중                        
-                        tr
-                            td#table1(style = 'border-right: 1px solid #a5abb2; border-top: 1px solid #a5abb2;')
-                                | FG-3
-                            td#table2(style = 'border-right: 1px solid #a5abb2; border-top: 1px solid #a5abb2;')
-                                | 이 책 제목
-                            td#table3(style = 'border-top: 1px solid #a5abb2;')
-                                | 가출중
+                    ul
+                        li
+                            .resultCheckBox
+                                | 쳌
+                            .bookLocation
+                                | G-3
+                            .bookTitle
+                                | 디지몬 어드벤쳐
+                            .bookStatus
+                                | 거주중
+                        li
+                            | 안녕
+                        li
+                            | 안녕
             form#searchForm(action = '/writeComplete', method = 'post')
                 input#writeTitleInput(type = 'hidden', name = 'bookSendTitle')
                 button#writeButton(type = 'submit')

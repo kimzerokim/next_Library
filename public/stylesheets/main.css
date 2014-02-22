@@ -1,5 +1,5 @@
 /* reset align */
-body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textare a,button,select{margin:0;padding:0}
+body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select{margin:0;padding:0}
 body,input,textarea,select,button,table{font-family:'�뗭�',Dotum,AppleGothic,sans-serif;font-size:1em}
 img,fieldset{border:0}
 ul,ol{list-style:none}
@@ -24,7 +24,7 @@ nav {
 	font-size: 27px;
 	font-weight: 100;
 	line-height: 40px;
-	vertical-align: center;
+	vertical-align: middle;
 	color : #eeeeee;
 }
 
@@ -76,7 +76,7 @@ nav #home {
 	height: 25px;
 	border: 1px solid #a5abb2;
 	border-radius: 2px;
-	margin: 0px 30px 0px 144px;
+	margin: 0px 20px 0px 144px;
 	font-size: 14px;
 }
 
@@ -86,7 +86,7 @@ nav #home {
 	border-radius: 4px;
 	line-height: 22px;
 	text-align: center;
-	vertical-align: center;
+	vertical-align: middle;
 	margin: 20px auto 20px auto;
 	background-color: #424242;
 	color: #e5ecf3;
@@ -98,33 +98,52 @@ nav #home {
 
 #writePopUp #searchResult {
     height : auto;
-    width: auto;
+    width: 480px;
+    margin : 0 auto 0 auto;
     padding-bottom: 6px;
-    display: none;
+    display: block;
 }
 
-#writePopUp #searchTable {
-	width : 520px;
-	height : 28px;
-	border: 1px solid #a5abb2;
-	border-radius: 2px;
-	margin: 6px auto 20px auto;
-	font-size: 14px;
+#writePopUp #searchResult li {
+    height : 30px;
+    margin : 0px 0px 16px 0px;
+    border : 1px solid #f0e3e3;
+    background-color: #eeeeee;
+    text-align: center;
+    line-height: 20px;
+    vertical-align: middle;
+    font-size: 16px;
 	font-family : 'Nanum Gothic' , sans-serif;
-	text-align: center;
-	color : #54585c;
+    color : #857f7f;
+    #c5c6d3
 }
 
-#writePopUp #searchResult .c1 {
-	width: 100px;
+#writePopUp #searchResult li .resultCheckBox {
+    width: 30px;
+    height: 30px;
+    float : left;
+    border : 1px solid #f0e3e3;
 }
 
-#writePopUp #searchResult .c2 {
-	width : 320px;
-}	
+#writePopUp #searchResult li .bookLocation {
+    width: 80px;
+    height: 30px;
+    float : left;
+    border : 1px solid #f0e3e3;
+}
 
-#writePopUp #searchResult .c3 {
-	width: 100px;
+#writePopUp #searchResult li .bookTitle {
+    width: 280px;
+    height: 30px;
+    float : left;
+    border : 1px solid #f0e3e3;
+}
+
+#writePopUp #searchResult li .bookStatus {
+    width: 80px;
+    height: 30px;
+    float : left;
+    border : 1px solid #f0e3e3;
 }
 
 #writePopUp #searchForm {
@@ -139,10 +158,9 @@ nav #home {
 	border-radius: 4px;
 	line-height: 38px;
 	text-align: center;
-	vertical-align: center;
+	vertical-align: middle;
 	left: 50%;
 	margin : 20px 0px 10px -46px;
-	1margin: 22px auto 20px auto;
 	background-color: #424242;
 	color: #e5ecf3;
 	cursor : pointer;
@@ -201,7 +219,7 @@ nav #home {
 	font-family: 'Nanum Gothic', sans-serif;
 	font-size : 22px;
 	line-height: 84px;
-	vertical-align: center;
+	vertical-align: middle;
 	letter-spacing: 3px;
 	color : #4c5561;
 	margin : 00px 0px 0px 0px;
@@ -247,7 +265,7 @@ nav #home {
 	border-radius: 4px;
 	line-height: 42px;
 	text-align: center;
-	vertical-align: center;
+	vertical-align: middle;
 	margin: 58px 42px 0px auto;
 	background-color: #424242;
 	color: #e5ecf3;
@@ -305,7 +323,7 @@ nav #home {
 	border-radius: 4px;
 	line-height: 22px;
 	text-align: center;
-	vertical-align: center;
+	vertical-align: middle;
 	margin: 10px 5px 0px 1px;
 	background-color: #4d4d4d;
 	color: #e5ecf3;
@@ -322,7 +340,7 @@ nav #home {
 	border-radius: 4px;
 	line-height: 22px;
 	text-align: center;
-	vertical-align: center;
+	vertical-align: middle;
 	margin: 6px 5px 0px 1px;
 	background-color: #4d4d4d;
 	color: #e5ecf3;
@@ -441,7 +459,7 @@ nav #home {
 	border-radius: 3px;
 	line-height: 29px;
 	text-align: center;
-	vertical-align: center;
+	vertical-align: middle;
 	margin: 12px 30px 0px auto;
 	background-color: #424563;
 	color: #e5ecf3;

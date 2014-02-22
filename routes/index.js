@@ -224,14 +224,11 @@ exports.searchBook = function (req, res) {
     //need to manage large rows
     bookSearch(function (err, result) {
         if (err) throw err;
-        receiveQuery(result[0]);
-    });
-
-    function receiveQuery(result) {
-        bookStatus = result;
+        bookStatus = result[0];
         res.contentType('json');
         res.send(bookStatus);
-    }
+        console.log(bookStatus);
+    });
 };
 
 exports.writeCard = function (req, res) {
