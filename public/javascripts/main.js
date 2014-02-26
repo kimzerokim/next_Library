@@ -62,6 +62,11 @@ var aside = {
 				    var obj = JSON.parse(request.responseText);
 				    var rTable = document.getElementById("searchResult");
 				    rTable.style.display = "block";
+				    var table1 = document.getElementById("table1");
+                    table1.innerHTML = obj.location;
+                    var table2 = document.getElementById("table2");
+                    table2.innerHTML = obj.title;
+                    var writeTitleInput = document.getElementById("writeTitleInput");
                     writeTitleInput.value = obj.title;           
                 };
             };            
@@ -71,7 +76,7 @@ var aside = {
         }
         
         /*
-bookSearchRequest : function(e) {
+        bookSearchRequest : function(e) {
             e.preventDefault();
             var eleForm = e.currentTarget.form;
             var oFormData = new FormData(eleForm);

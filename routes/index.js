@@ -199,7 +199,13 @@ exports.main = function (req, res) {
         }
         else {
             //return card list
-            res.render('main', {userName: req.session.userName, userFindCount: result[0].find_count, cards: result});
+            res.render('main', {userName: req.session.userName, userFindCount: result[0].find_count, cards: result,
+                bookSearchResult: [
+                    { location: 'FG-4', title: '안녕', status: 0 },
+                    { location: 'FAFA', title: '안녕 1', status: 0 },
+                    { location: 'FAFA', title: '안녕 2', status: 1 },
+                    { location: 'FAFA', title: '안녕 3', status: 0 }
+                ]});
         }
     });
 };
@@ -207,7 +213,7 @@ exports.main = function (req, res) {
 //write
 exports.searchBook = function (req, res) {
     var searchQuery = req.body.bookTitle;
-    var bookStatus = {};
+    var bookSearchResult = {};
 
     //full text search
     function bookSearch(callback) {
@@ -226,10 +232,10 @@ exports.searchBook = function (req, res) {
     bookSearch(function (err, result) {
         if (err) throw err;
         console.log(result);
-        bookStatus = result[0];
+        bookSearchResult = result[0];
         res.contentType('json');
-        res.send(bookStatus);
-        console.log(bookStatus);
+        res.send(bookSearchResult);
+        console.log(bookSearchResult);
     });
 };
 
@@ -266,6 +272,14 @@ exports.writeCard = function (req, res) {
                         callback(err);
                         return;
                     }
+
+                    //book status change
+                    conn.query('UPDATE book SET status = 1 WHERE bookNum = "' + bookNum + '"', function (err) {
+                        if (err) {
+                            callback(err);
+                            return;
+                        }
+                    });
                     callback(null);
                 });
             });
@@ -285,7 +299,7 @@ exports.writeCard = function (req, res) {
             if (err) {
                 throw err;
             }
-            console.log("successfully write new Card");
+            console.log("successfully write new Card, book name : " + bookTitle);
         });
     });
 
@@ -294,11 +308,39 @@ exports.writeCard = function (req, res) {
 
 //card return button action
 exports.changeCard = function (req, res) {
-    var cardNum = req.params.cardNum;
+    var cardNum = req.params.cardNum
+    var bookNum;
 
-    conn.query('UPDATE user_has_book SET status = 1 WHERE cardNum = "' + cardNum + '"', function (err) {
+    //
+    function changeCard(callback) {
+        conn.query('UPDATE user_has_book SET status = 1 WHERE cardNum = "' + cardNum + '"', function (err) {
+            if (err) {
+                callback(err, null);
+                return;
+            }
+            console.log("cardNum :" + cardNum + " successfully changed");
+            conn.query('SELECT bookNum FROM user_has_book WHERE cardNum ="' + cardNum + '"', function (err, result) {
+                if (err) {
+                    callback(err, null);
+                    return;
+                }
+                bookNum = result[0].bookNum;
+                console.log(bookNum);
+                callback(null);
+            });
+        });
+    }
+
+    changeCard(function (err) {
         if (err) throw err;
-        console.log("cardNum" + cardNum + "successfully changed");
-        res.redirect('/');
+        conn.query('UPDATE book SET status = 0 WHERE bookNum = "' + bookNum + '"', function (err) {
+            if (err) {
+                throw err;
+            }
+            console.log("bookNum :" + bookNum + " successfully changed");
+
+            res.redirect('/');
+        })
+
     });
 };

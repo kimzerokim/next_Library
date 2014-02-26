@@ -21,52 +21,29 @@ html
                     button#searchButton(type='submit')
                         | 검색
                 #searchResult
-                    ul
-                        li
-                            .resultCheckBox
-                                | 쳌
-                            .bookLocation
-                                | G-3
-                            .bookTitle
-                                | 디지몬 어드벤쳐
-                            .bookStatus
-                                | 거주중
-                        li
-                            .resultCheckBox
-                                | 쳌
-                            .bookLocation
-                                | G-3
-                            .bookTitle
-                                | 디지몬 어드벤쳐
-                            .bookStatus
-                                | 거주중
-                        li
-                            .resultCheckBox
-                                | 쳌
-                            .bookLocation
-                                | G-3
-                            .bookTitle
-                                | 디지몬 어드벤쳐
-                            .bookStatus
-                                | 거주중
-                        li
-                            .resultCheckBox
-                                | 쳌
-                            .bookLocation
-                                | G-3
-                            .bookTitle
-                                | 디지몬 어드벤쳐
-                            .bookStatus
-                                | 거주중
-                        li
-                            .resultCheckBox
-                                | 쳌
-                            .bookLocation
-                                | G-3
-                            .bookTitle
-                                | 디지몬 어드벤쳐
-                            .bookStatus
-                                | 거주중
+                    each book in bookSearchResult
+                        if(book.status == 0)
+                            ul
+                                li
+                                    .resultCheckBox
+                                        | 쳌
+                                    .bookLocation
+                                        | #{book.location}
+                                    .bookTitle
+                                        | #{book.title}
+                                    .bookStatus
+                                        | 집에있음
+                        if(book.status == 1)
+                            ul
+                                li
+                                    .resultCheckBox
+                                        | 쳌
+                                    .bookLocation
+                                        | #{book.location}
+                                    .bookTitle
+                                        | #{book.title}
+                                    .bookStatus
+                                        | 가출중
             form#searchForm(action = '/writeComplete', method = 'post')
                 input#writeTitleInput(type = 'hidden', name = 'bookSendTitle')
                 button#writeButton(type = 'submit')

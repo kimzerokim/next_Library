@@ -115,6 +115,7 @@ nav #home {
     font-size: 16px;
 	font-family : 'Nanum Gothic' , sans-serif;
     color : #767885;
+    cursor : pointer;
 }
 
 #writePopUp #searchResult li .resultCheckBox {
