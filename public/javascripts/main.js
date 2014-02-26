@@ -50,6 +50,7 @@ var aside = {
 		
 		bookSearchRequest : function(e) {
 		    e.preventDefault();
+		    
             var eleForm = e.currentTarget.form;
             var oFormData = new FormData(eleForm);
            
@@ -59,41 +60,65 @@ var aside = {
             request.open("POST" , url, true);
             request.onreadystatechange = function() {
 			    if (request.readyState == 4 && request.status == 200) {
-				    var obj = JSON.parse(request.responseText);
-				    var rTable = document.getElementById("searchResult");
-				    rTable.style.display = "block";
-				    var table1 = document.getElementById("table1");
-                    table1.innerHTML = obj.location;
-                    var table2 = document.getElementById("table2");
-                    table2.innerHTML = obj.title;
-                    var writeTitleInput = document.getElementById("writeTitleInput");
-                    writeTitleInput.value = obj.title;           
-                };
+				    var bookSearchResult = JSON.parse(request.responseText);
+				    aside.writeEvent.showBookList(bookSearchResult);			              
+                }
             };            
             request.send(oFormData);
             //ajax 통신이 끝난 후 폼의 값을 초기화 해준다.
-            eleForm[0].value = "";
-        }
+            eleForm[0].value = "";           
+        }, 
         
-        /*
-        bookSearchRequest : function(e) {
-            e.preventDefault();
-            var eleForm = e.currentTarget.form;
-            var oFormData = new FormData(eleForm);
+        bookSelect : function() {
+            var searchResultDiv = document.getElementById("searchResult");
+		    var searchResultList = searchResultDiv.getElementsByTagName('li');
+		    for (var i = 0 ; searchResultList.length > i; i++) {
+    		    searchResultList[i].style.backgroundColor = "#eeeeee";
+    		    
+    		    var liCheckBox = searchResultList[i].getElementsByClassName("check");
+    		    liCheckBox[0].style.display = "none";
+		    }
+		    
+		    this.style.backgroundColor = "#f4d5d5";
+		    
+		    var checkBox = this.getElementsByClassName("check");
+		    checkBox[0].style.display = "block";
+		    
+		    var bookTitle = this.getElementsByClassName("bookTitle");
+		    
+		    var writeTitleInput = document.getElementById("writeTitleInput");
+            writeTitleInput.value = bookTitle[0].innerText;    
+		    
+        },
+        
+        showBookList : function(result) {
+            var gParentNode = document.getElementById("searchResult");
+            var parentNode = gParentNode.childNodes[0];
+            var sendHTML = '';
             
-            var url = "/searchBookForRequest";
-            var request = new XMLHttpRequest();
-            
-            request.open("POST", url, true);
-            request.onreadystatechange = function() {
-                if (request.readState == 4 && request.status == 200) {
-                    var obj = JSON.parse(request.responseText);
-                    var resultList = document.getElementById("searchResult");
-                    resultList.style.display = "block";
+            for (var j = 0; result.length > j; j++) {
+                var currentHTML = '<li><div class="resultCheckBox"><div class="check">쳌!</div></div><div class="bookLocation">'+ result[j].location +'</div><div class="bookTitle">'+ result[j].title +'</div>';
+                if (result[j].status == 0) {
+                    currentHTML += '<div class="bookStatus">집에있음</div></li>'; 
+                    sendHTML += currentHTML;
+                }
+                else {
+                    currentHTML += '<div class="bookStatus">가출중</div></li>'; 
+                    sendHTML += currentHTML;
                 }
             }
+            parentNode.innerHTML = sendHTML;
+            console.log(sendHTML);
+            sendHTML = '';
+            currentHTML = '';
+            
+            //검색결과가 만들어진 후 리스트에 이벤트핸들러 추가
+            var searchResultDiv = document.getElementById("searchResult");
+		    var searchResultList = searchResultDiv.getElementsByTagName('li');
+		    for (var i = 0 ; searchResultList.length > i; i++) {
+    		    searchResultList[i].addEventListener("click", aside.writeEvent.bookSelect, true);
+		    }
         }
-*/
 	},
 	
 	userInfoEvent : {	

@@ -1,5 +1,5 @@
 //indent, space
-!!! 5
+DOCTYPE 5
 html
     head
         meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
@@ -21,29 +21,8 @@ html
                     button#searchButton(type='submit')
                         | 검색
                 #searchResult
-                    each book in bookSearchResult
-                        if(book.status == 0)
-                            ul
-                                li
-                                    .resultCheckBox
-                                        | 쳌
-                                    .bookLocation
-                                        | #{book.location}
-                                    .bookTitle
-                                        | #{book.title}
-                                    .bookStatus
-                                        | 집에있음
-                        if(book.status == 1)
-                            ul
-                                li
-                                    .resultCheckBox
-                                        | 쳌
-                                    .bookLocation
-                                        | #{book.location}
-                                    .bookTitle
-                                        | #{book.title}
-                                    .bookStatus
-                                        | 가출중
+                    ul
+                        
             form#searchForm(action = '/writeComplete', method = 'post')
                 input#writeTitleInput(type = 'hidden', name = 'bookSendTitle')
                 button#writeButton(type = 'submit')

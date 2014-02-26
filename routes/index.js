@@ -200,12 +200,7 @@ exports.main = function (req, res) {
         else {
             //return card list
             res.render('main', {userName: req.session.userName, userFindCount: result[0].find_count, cards: result,
-                bookSearchResult: [
-                    { location: 'FG-4', title: '안녕', status: 0 },
-                    { location: 'FAFA', title: '안녕 1', status: 0 },
-                    { location: 'FAFA', title: '안녕 2', status: 1 },
-                    { location: 'FAFA', title: '안녕 3', status: 0 }
-                ]});
+                bookSearchResult: []});
         }
     });
 };
@@ -219,7 +214,7 @@ exports.searchBook = function (req, res) {
     function bookSearch(callback) {
         conn.query('SELECT location, title, status FROM book WHERE MATCH(title) AGAINST("*'
             + searchQuery + '*") UNION SELECT location, title, status FROM book WHERE title LIKE "%'
-            + searchQuery + '%" LIMIT 5', function (err, result) {
+            + searchQuery + '%" ORDER BY status LIMIT 5', function (err, result) {
             if (err) {
                 callback(err, null);
                 return;
@@ -232,10 +227,9 @@ exports.searchBook = function (req, res) {
     bookSearch(function (err, result) {
         if (err) throw err;
         console.log(result);
-        bookSearchResult = result[0];
+        bookSearchResult = result;
         res.contentType('json');
         res.send(bookSearchResult);
-        console.log(bookSearchResult);
     });
 };
 
@@ -274,7 +268,8 @@ exports.writeCard = function (req, res) {
                     }
 
                     //book status change
-                    conn.query('UPDATE book SET status = 1 WHERE bookNum = "' + bookNum + '"', function (err) {
+                    conn.query('UPDATE book SET status = 1, find_count = find_count + 1 WHERE bookNum = "'
+                        + bookNum + '"', function (err) {
                         if (err) {
                             callback(err);
                             return;
@@ -290,7 +285,7 @@ exports.writeCard = function (req, res) {
         //receive callback variables
         if (err) {
             console.log("error while writing new Card");
-            throw err;
+            res.render('error');
         }
 
         //create card
