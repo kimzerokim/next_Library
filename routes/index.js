@@ -211,8 +211,9 @@ exports.searchBook = function (req, res) {
 
     //full text search
     function bookSearch(callback) {
-        conn.query('SELECT location, title, status FROM book WHERE MATCH(title) AGAINST("'
-            + searchQuery + '") LIMIT 5', function (err, result) {
+        conn.query('SELECT location, title, status FROM book WHERE MATCH(title) AGAINST("*'
+            + searchQuery + '*") UNION SELECT location, title, status FROM book WHERE title LIKE "%'
+            + searchQuery + '%" LIMIT 5', function (err, result) {
             if (err) {
                 callback(err, null);
                 return;
@@ -224,6 +225,7 @@ exports.searchBook = function (req, res) {
     //need to manage large rows
     bookSearch(function (err, result) {
         if (err) throw err;
+        console.log(result);
         bookStatus = result[0];
         res.contentType('json');
         res.send(bookStatus);
