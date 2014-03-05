@@ -11,6 +11,8 @@ var path = require('path');
 var app = express();
 
 // all environments
+
+app.use(express.static(path.join(__dirname, 'public')));
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -25,7 +27,6 @@ app.use(express.cookieParser());
 app.use(express.session({ secret: "keyboard cat" }));
 app.use(express.methodOverride());
 app.use(app.router);
-app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
 if ('development' == app.get('env')) {
@@ -57,9 +58,10 @@ app.post('/writeComplete', routes.writeCard);
 app.get('/changeCardStatus/:cardNum', routes.changeCard);
 
 
+
 //create Node Server
 http.createServer(app).listen(app.get('port'), function () {
-    console.log('//////////////////////////////////////////\n' +
+    console.log('\n//////////////////////////////////////////\n' +
                 '//// Express server listening on port ' + app.get('port') +
-                '\n//////////////////////////////////////////');
+                '\n//////////////////////////////////////////\n');
 });

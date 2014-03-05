@@ -3,16 +3,16 @@ var mysql = require('mysql');
 
 var extractConnection = (function () {
     var mysqlConfig = {
-        host: 'localhost',
-        port: 3306,
-        user: 'nodeMaster',
-        password: 'node',
-        database: 'nextLibrary'
-    };
+            host: 'localhost',
+            port: 3306,
+            user: 'nodeMaster',
+            password: 'node',
+            database: 'nextLibrary'
+        },
 
-    var returnInfo = function () {
-        return mysqlConfig;
-    };
+        returnInfo = function () {
+            return mysqlConfig;
+        };
 
     return {
         returnInfo: returnInfo
@@ -54,13 +54,13 @@ exports.login = function (req, res) {
 
 var adminInfo = (function () {
     var info = {
-        userId: 'admin',
-        password: 'admin'
-    };
+            userId: 'admin',
+            password: 'admin'
+        },
 
-    var returnInfo = function () {
-        return info;
-    };
+        returnInfo = function () {
+            return info;
+        };
 
     return {
         returnInfo: returnInfo
@@ -68,8 +68,8 @@ var adminInfo = (function () {
 }());
 
 exports.loginEnter = function (req, res) {
-    var userId = req.body.userId;
-    var password = req.body.password;
+    var userId = req.body.userId,
+        password = req.body.password;
 
     function configureAdmin() {
         if (userId === adminInfo.returnInfo().userId && password === adminInfo.returnInfo().password) {
@@ -137,10 +137,10 @@ exports.register = function (req, res) {
 };
 
 exports.registerEnter = function (req, res) {
-    var userId = req.body.userId;
-    var name = req.body.userName;
-    var password = req.body.password;
-    var reEnteredPassword = req.body.rePassword;
+    var userId = req.body.userId,
+        name = req.body.userName,
+        password = req.body.password,
+        reEnteredPassword = req.body.rePassword;
 
     if (password === reEnteredPassword) {
 
@@ -207,26 +207,29 @@ exports.main = function (req, res) {
 
 //write
 exports.searchBook = function (req, res) {
-    var searchQuery = req.body.bookTitle;
-    var bookSearchResult = {};
+    var searchQuery = req.body.bookTitle,
+        bookSearchResult = {};
 
     //full text search
     function bookSearch(callback) {
         conn.query('SELECT location, title, status FROM book WHERE MATCH(title) AGAINST("*'
-            + searchQuery + '*") UNION SELECT location, title, status FROM book WHERE title LIKE "%'
-            + searchQuery + '%" ORDER BY status LIMIT 5', function (err, result) {
+            + searchQuery + '*") ORDER BY status LIMIT 5', function (err, result) {
             if (err) {
                 callback(err, null);
                 return;
             }
-            callback(null, result);
+
+            if (result.length > 0) {
+                callback(null, result);
+            }
+            else {
+                res.render('error', {errorMsg: '찾고자 하는 책 정보에 문제가 있어요 ㅜㅠ'});
+            }
         })
     }
 
-    //need to manage large rows
     bookSearch(function (err, result) {
         if (err) throw err;
-        console.log(result);
         bookSearchResult = result;
         res.contentType('json');
         res.send(bookSearchResult);
@@ -234,11 +237,11 @@ exports.searchBook = function (req, res) {
 };
 
 exports.writeCard = function (req, res) {
-    var userId = req.session.userId;
-    var userNum;
-    var bookTitle = req.body.bookSendTitle;
-    var bookLocation;
-    var bookNum;
+    var userId = req.session.userId,
+        userNum,
+        bookTitle = req.body.bookSendTitle,
+        bookLocation,
+        bookNum;
 
     function writeCard(callback) {
         //receive book info
@@ -248,36 +251,52 @@ exports.writeCard = function (req, res) {
                 return;
             }
 
-            //writing book info to create card. (bookTitle is unique key, so i should use result's first order value)
-            bookLocation = result[0].location;
-            bookNum = result[0].bookNum;
+            if (result.length > 0) {
+                //writing book info to create card. (bookTitle is unique key, so i should use result's first order value)
+                bookLocation = result[0].location;
+                bookNum = result[0].bookNum;
 
-            //user configuration. (also userId is unique key)
-            conn.query('SELECT userNum, find_count FROM user WHERE userId = "' + userId + '"', function (err, result) {
-                if (err) {
-                    callback(err);
-                    return;
-                }
-
-                userNum = result[0].userNum;
-
-                conn.query('UPDATE user SET find_count = find_count+1 WHERE userNum = "' + userNum + '"', function (err) {
+                //user configuration. (also userId is unique key)
+                conn.query('SELECT userNum, find_count FROM user WHERE userId = "' + userId + '"', function (err, result) {
                     if (err) {
                         callback(err);
                         return;
                     }
 
-                    //book status change
-                    conn.query('UPDATE book SET status = 1, find_count = find_count + 1 WHERE bookNum = "'
-                        + bookNum + '"', function (err) {
-                        if (err) {
-                            callback(err);
-                            return;
-                        }
-                    });
-                    callback(null);
+                    if (result.length > 0) {
+
+                        userNum = result[0].userNum;
+
+                        conn.query('UPDATE user SET find_count = find_count+1 WHERE userNum = "' + userNum + '"', function (err) {
+                            if (err) {
+                                callback(err);
+                                return;
+                            }
+
+                            if (result.length > 0) {
+
+                                //book status change
+                                conn.query('UPDATE book SET status = 1, find_count = find_count + 1 WHERE bookNum = "'
+                                    + bookNum + '"', function (err) {
+                                    if (err) {
+                                        callback(err);
+                                    }
+                                });
+                                callback(null);
+                            }
+                            else {
+                                res.render('error', {errorMsg: '로그인 문제가 있는 것 같아요'});
+                            }
+                        });
+                    }
+                    else {
+                        res.render('error', {errorMsg: '로그인 문제가 있는 것 같아요'});
+                    }
                 });
-            });
+            }
+            else {
+                res.render('error', {errorMsg: '책의 제목이 문제가 있어요'});
+            }
         });
     }
 
@@ -296,15 +315,15 @@ exports.writeCard = function (req, res) {
             }
             console.log("successfully write new Card, book name : " + bookTitle);
         });
-    });
 
-    res.redirect('/');
+        res.redirect('/');
+    });
 };
 
 //card return button action
 exports.changeCard = function (req, res) {
-    var cardNum = req.params.cardNum
-    var bookNum;
+    var cardNum = req.params.cardNum,
+        bookNum;
 
     //
     function changeCard(callback) {
@@ -313,15 +332,22 @@ exports.changeCard = function (req, res) {
                 callback(err, null);
                 return;
             }
+
             console.log("cardNum :" + cardNum + " successfully changed");
+
             conn.query('SELECT bookNum FROM user_has_book WHERE cardNum ="' + cardNum + '"', function (err, result) {
                 if (err) {
                     callback(err, null);
                     return;
                 }
-                bookNum = result[0].bookNum;
-                console.log(bookNum);
-                callback(null);
+                if (result.length > 0) {
+                    bookNum = result[0].bookNum;
+                    console.log(bookNum);
+                    callback(null);
+                }
+                else {
+                    res.render('error', {errorMsg: '반납에 문제가 있어요'});
+                }
             });
         });
     }
